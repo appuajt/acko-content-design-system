@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "cds",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-p", "4321", "."],
+      "port": 4321
+    },
+    {
+      "name": "quiz",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "-p", "4322", "/Users/appu.ajith/Desktop/ACKO UX Writing Quiz"],
+      "port": 4322
+    }
+  ]
+}

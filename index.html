@@ -1,0 +1,3133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACKO Content Design System</title>
+  <style>
+    /* ── FONT ─────────────────────────────────── */
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://pub-c050457d48794d5bb9ffc2b4649de2c1.r2.dev/Euclid%20Font/EuclidCircularB-Regular.ttf') format('truetype'),
+           url('Font/EuclidCircularB-Regular.ttf') format('truetype');
+      font-weight: 400; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://pub-c050457d48794d5bb9ffc2b4649de2c1.r2.dev/Euclid%20Font/EuclidCircularB-RegularItalic.ttf') format('truetype'),
+           url('Font/EuclidCircularB-RegularItalic.ttf') format('truetype');
+      font-weight: 400; font-style: italic; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://pub-c050457d48794d5bb9ffc2b4649de2c1.r2.dev/Euclid%20Font/EuclidCircularB-Medium.ttf') format('truetype'),
+           url('Font/EuclidCircularB-Medium.ttf') format('truetype');
+      font-weight: 500; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://pub-c050457d48794d5bb9ffc2b4649de2c1.r2.dev/Euclid%20Font/EuclidCircularB-Semibold.ttf') format('truetype'),
+           url('Font/EuclidCircularB-Semibold.ttf') format('truetype');
+      font-weight: 600; font-style: normal; font-display: swap;
+    }
+    @font-face {
+      font-family: 'Euclid Circular B';
+      src: url('https://pub-c050457d48794d5bb9ffc2b4649de2c1.r2.dev/Euclid%20Font/EuclidCircularB-Bold.ttf') format('truetype'),
+           url('Font/EuclidCircularB-Bold.ttf') format('truetype');
+      font-weight: 700; font-style: normal; font-display: swap;
+    }
+
+    /* ── RESET ────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── TOKENS ───────────────────────────────── */
+    :root {
+      /* Brand */
+      --color-primary:          #6841E6;
+      --color-primary-hover:    #582FD2;
+      --color-primary-subtle:   #F5F3FF;
+      --color-primary-muted:    #D9D8FC;
+
+      /* Greys */
+      --grey-white:   #FFFFFF;
+      --grey-50:      #FBFBFB;
+      --grey-100:     #F5F5F5;
+      --grey-150:     #EBEBEB;
+      --grey-200:     #E0E0E1;
+      --grey-250:     #CCCCCD;
+      --grey-300:     #B7B7B8;
+      --grey-350:     #8F8E92;
+      --grey-400:     #7A7B7D;
+      --grey-450:     #605F63;
+      --grey-500:     #474649;
+      --grey-550:     #333333;
+      --grey-700:     #141414;
+      --grey-800:     #0A0A0A;
+
+      /* Semantic text */
+      --color-text-primary:   var(--grey-800);
+      --color-text-default:   var(--grey-700);
+      --color-text-secondary: var(--grey-450);
+      --color-text-tertiary:  var(--grey-400);
+
+      /* Semantic surfaces */
+      --color-surface:        var(--grey-100);
+      --color-surface-raised: var(--grey-white);
+      --color-border:         var(--grey-200);
+      --color-border-subtle:  var(--grey-150);
+      --color-border-strong:  var(--grey-300);
+
+      /* Feedback */
+      --color-success:        #16A34A;
+      --color-success-subtle: #F0FDF4;
+      --color-success-border: #BBF7D0;
+      --color-success-text:   #15803D;
+
+      --color-warning:        #D97706;
+      --color-warning-subtle: #FFFBEB;
+      --color-warning-border: #FDE68A;
+      --color-warning-text:   #B45309;
+
+      --color-error-subtle:   #FFF1F2;
+      --color-error-border:   #FECDD3;
+      --color-error-text:     #BE123C;
+
+      /* Radii */
+      --radius-sm:   4px;
+      --radius-md:   6px;
+      --radius-lg:   8px;
+      --radius-xl:   10px;
+      --radius-4xl:  20px;
+      --radius-full: 9999px;
+
+      /* Shadows */
+      --shadow-sm:  0 1px 4px rgba(0,0,0,0.06);
+      --shadow-md:  0 2px 8px rgba(0,0,0,0.06);
+      --shadow-lg:  0px 2px 16px 4px rgba(0,0,0,0.04);
+
+      /* Layout */
+      --sidebar-width:  260px;
+      --header-height:  56px;
+      --content-max:    none;
+
+      /* Type scale */
+      --font: 'Euclid Circular B', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      font-family: var(--font);
+      color: var(--color-text-primary);
+      background: var(--grey-white);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── HEADER ───────────────────────────────── */
+    .site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--header-height);
+      background: var(--grey-white);
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      padding: 0 24px;
+      gap: 10px;
+      z-index: 150;
+    }
+
+    .site-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      letter-spacing: -0.2px;
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .site-title span {
+      font-weight: 400;
+      color: var(--color-text-secondary);
+    }
+
+    /* ── LAYOUT ───────────────────────────────── */
+    .layout {
+      display: flex;
+      margin-top: var(--header-height);
+      min-height: calc(100vh - var(--header-height));
+    }
+
+    /* ── SIDEBAR ──────────────────────────────── */
+    .sidebar {
+      position: fixed;
+      top: var(--header-height);
+      left: 0; bottom: 0;
+      width: var(--sidebar-width);
+      background: var(--grey-white);
+      border-right: 1px solid var(--color-border);
+      overflow-y: auto;
+      padding-bottom: 40px;
+    }
+
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 2px; }
+
+    .sidebar-group {
+      padding-top: 20px;
+    }
+
+    .sidebar-label {
+      /* overline token: 11px / 16px, 0.5px tracking, semibold */
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 16px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      padding: 0 16px 6px;
+    }
+
+    .sidebar nav ul { list-style: none; }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      /* label-lg: 14px / 20px, 0.1px tracking, medium 500 */
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      letter-spacing: 0.006em;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      border-radius: 0;
+      transition: background 0.1s, color 0.1s;
+      user-select: none;
+    }
+
+    .nav-item:hover {
+      background: var(--color-surface);
+      color: var(--color-text-default);
+    }
+
+    .nav-item.active {
+      background: var(--color-primary-subtle);
+      color: var(--color-primary);
+      font-weight: 500;
+    }
+
+    .nav-item .status-pip {
+      margin-left: auto;
+      flex-shrink: 0;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--color-border-strong);
+    }
+    .nav-item .status-pip.complete  { background: var(--color-success); }
+    .nav-item .status-pip.partial   { background: var(--color-warning); }
+
+    /* Sub-nav */
+    .nav-parent {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: background 0.1s, color 0.1s;
+      user-select: none;
+    }
+
+    .nav-parent:hover {
+      background: var(--color-surface);
+      color: var(--color-text-default);
+    }
+
+    .nav-parent.open {
+      color: var(--color-text-default);
+      font-weight: 500;
+    }
+
+    .chevron {
+      margin-left: auto;
+      color: var(--color-text-tertiary);
+      font-size: 10px;
+      transition: transform 0.15s;
+      flex-shrink: 0;
+    }
+    .chevron.open { transform: rotate(90deg); }
+
+    .sub-nav { display: none; }
+    .sub-nav.open { display: block; }
+
+    .sub-nav .nav-item {
+      padding-left: 28px;
+      font-size: 13.5px;
+    }
+
+    .deep-nav { display: none; }
+    .deep-nav.open { display: block; }
+
+    .deep-nav .nav-item {
+      padding-left: 40px;
+      font-size: 13px;
+    }
+
+    .nav-parent.sub {
+      padding-left: 28px;
+      font-size: 13.5px;
+    }
+
+    /* ── CONTENT AREA ─────────────────────────── */
+    .content {
+      margin-left: var(--sidebar-width);
+      flex: 1;
+      padding: 32px 40px 80px;
+    }
+
+    .content-section { display: none; }
+    .content-section.active { display: block; }
+
+    .card {
+      max-width: var(--content-max);
+    }
+
+    /* ── PAGE TITLE ───────────────────────────── */
+    .breadcrumb {
+      /* label-md: 12px / 16px, medium */
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 16px;
+      color: var(--color-text-tertiary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+    .breadcrumb .sep { color: var(--color-border-strong); }
+
+    .page-title {
+      /* heading-xl: 32px / 40px, -0.5px, semibold */
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 40px;
+      letter-spacing: -0.5px;
+      color: var(--color-text-primary);
+      text-wrap: balance;
+      margin-bottom: 12px;
+    }
+
+    .page-intro {
+      /* body-lg: 18px / 28px, regular */
+      font-size: 18px;
+      font-weight: 400;
+      line-height: 28px;
+      color: var(--color-text-secondary);
+      max-width: 720px;
+      margin-bottom: 0;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--color-border-subtle);
+      margin: 32px 0;
+    }
+
+    /* ── RULE BLOCKS ──────────────────────────── */
+    .rule-block { margin-bottom: 8px; }
+    .rule-block.positive { border-top: 3px solid var(--color-success); padding-top: 14px; }
+    .rule-block.negative { border-top: 3px solid var(--color-error-text); padding-top: 14px; }
+    .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+    .rule-heading {
+      /* heading-sm: 18px / 24px, semibold */
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 24px;
+      letter-spacing: 0;
+      color: var(--color-text-primary);
+      margin-bottom: 8px;
+    }
+
+    .rule-rationale {
+      /* body-sm: 14px / 20px, regular */
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      color: var(--color-text-secondary);
+      max-width: 720px;
+      margin-bottom: 16px;
+    }
+
+    /* ── EXAMPLES ─────────────────────────────── */
+    .examples {
+      display: flex;
+      gap: 10px;
+    }
+
+    .examples-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .example {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--radius-lg);
+      font-size: 14px;
+      line-height: 20px;
+      height: 100%;
+    }
+
+    .example.use {
+      background: var(--color-success-subtle);
+      border: 1px solid var(--color-success-border);
+    }
+    .example.avoid {
+      background: var(--color-error-subtle);
+      border: 1px solid var(--color-error-border);
+    }
+
+    .ex-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+      padding-top: 1px;
+      line-height: 18px;
+    }
+    .example.use   .ex-label { color: var(--color-success); }
+    .example.avoid .ex-label { color: var(--color-error-text); }
+
+    .ex-text { color: var(--color-text-primary); }
+    .ex-list { margin: 0; padding: 0 0 0 16px; list-style: disc; }
+    .ex-list li + li { margin-top: 4px; }
+    .when-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 16px; }
+    .when-box { padding: 14px 0 0 0; border-top: 3px solid var(--color-border); }
+    .when-box.more { border-top-color: var(--color-success); }
+    .when-box.less { border-top-color: var(--color-border-strong); }
+    .when-box.avoid { border-top-color: var(--color-border-strong); }
+    .when-label { font-weight: 600; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 10px; color: var(--color-text-secondary); }
+    .when-box.more .when-label { color: var(--color-success-text); }
+
+    .when-box p { font-size: 13px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 6px; }
+    .when-box p:last-child { margin-bottom: 0; }
+    .when-box strong { color: var(--color-text-primary); font-weight: 600; }
+    .when-box ul { margin: 0; padding-left: 16px; }
+    .when-box li { font-size: 13px; line-height: 1.6; color: var(--color-text-secondary); margin-bottom: 4px; }
+    .when-box li:last-child { margin-bottom: 0; }
+
+    /* ── TABLES ───────────────────────────────── */
+    .table-wrap {
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin: 16px 0 24px;
+    }
+
+    table { width: 100%; border-collapse: collapse; }
+
+    thead { background: var(--color-surface); }
+
+    th {
+      text-align: left;
+      padding: 10px 16px;
+      /* overline */
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 16px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--color-border-subtle);
+      /* body-sm */
+      font-size: 14px;
+      line-height: 20px;
+      color: var(--color-text-secondary);
+      vertical-align: top;
+    }
+
+    td:first-child {
+      color: var(--color-text-primary);
+      font-weight: 500;
+    }
+
+    tr:last-child td { border-bottom: none; }
+
+    /* ── CALLOUT ──────────────────────────────── */
+    .callout {
+      background: #F5F3FF;
+      border-left: 3px solid var(--color-primary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      padding: 12px 16px;
+      margin-top: 16px;
+      font-size: 14px;
+      line-height: 20px;
+      color: var(--color-text-secondary);
+    }
+    .callout strong { color: var(--color-text-primary); font-weight: 500; }
+
+    /* ── STATUS BADGES ────────────────────────── */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 16px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .status-badge::before {
+      content: "";
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+
+    .status-badge.complete {
+      background: var(--color-success-subtle);
+      border: 1px solid var(--color-success-border);
+      color: var(--color-success-text);
+    }
+
+    .status-badge.partial {
+      background: var(--color-warning-subtle);
+      border: 1px solid var(--color-warning-border);
+      color: var(--color-warning-text);
+    }
+
+    .status-badge.wip {
+      background: var(--grey-100);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-tertiary);
+    }
+
+    /* Inline tag next to page title */
+    .title-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      vertical-align: middle;
+      margin-left: 10px;
+      position: relative;
+      top: -2px;
+    }
+
+    .title-tag.complete {
+      background: var(--color-success-subtle);
+      border: 1px solid var(--color-success-border);
+      color: var(--color-success-text);
+    }
+
+    /* ── WIP OUTLINE ──────────────────────────── */
+    .wip-outline {
+      margin-top: 28px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .wip-outline-header {
+      background: var(--color-surface);
+      padding: 10px 16px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .wip-outline ul { list-style: none; padding: 12px 0; }
+
+    .wip-outline li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 5px 16px;
+      font-size: 14px;
+      line-height: 20px;
+      color: var(--grey-300);
+    }
+
+    .wip-outline li::before {
+      content: "";
+      width: 16px; height: 1px;
+      background: var(--color-border);
+      flex-shrink: 0;
+    }
+
+    /* ── OVERVIEW HOME GRID ───────────────────── */
+    .overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .overview-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-4xl);
+      padding: 20px 24px;
+      cursor: pointer;
+      transition: border-color 0.12s, background 0.12s;
+    }
+
+    .overview-card:hover {
+      border-color: var(--color-border-strong);
+      background: var(--grey-white);
+    }
+
+    .ov-title {
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      color: var(--color-text-primary);
+      margin-bottom: 4px;
+    }
+
+    .ov-desc {
+      font-size: 13px;
+      line-height: 18px;
+      color: var(--color-text-tertiary);
+    }
+
+    .ov-status {
+      margin-top: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .ov-status.complete { color: var(--color-success); }
+    .ov-status.partial  { color: var(--color-warning); }
+    .ov-status.wip      { color: var(--color-text-tertiary); }
+
+    /* ── BODY TEXT UTILS ──────────────────────── */
+    p.body {
+      font-size: 16px;
+      line-height: 24px;
+      color: var(--color-text-secondary);
+      margin-bottom: 16px;
+    }
+
+    p.body-sm {
+      font-size: 14px;
+      line-height: 20px;
+      color: var(--color-text-secondary);
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="site-title"><span style="color:var(--color-primary);font-weight:700;letter-spacing:-0.5px">ACKO</span><span style="color:var(--color-text-secondary);font-weight:400">Content Design System</span></div>
+</header>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-group">
+      <nav><ul>
+        <li><div class="nav-item active" data-section="home">Overview</div></li>
+      </ul></nav>
+    </div>
+
+    <div class="sidebar-group">
+      <div class="sidebar-label">Foundations</div>
+      <nav><ul>
+        <li><div class="nav-item" data-section="voice-tone">Voice and tone <span class="status-pip partial"></span></div></li>
+        <li><div class="nav-item" data-section="universal-rules">Universal writing rules <span class="status-pip partial"></span></div></li>
+        <li><div class="nav-item" data-section="lexicon">Words and phrases <span class="status-pip"></span></div></li>
+        <li><div class="nav-item" data-section="grammar">Grammar and style <span class="status-pip"></span></div></li>
+      </ul></nav>
+    </div>
+
+    <div class="sidebar-group">
+      <div class="sidebar-label">Writing for products</div>
+      <nav><ul>
+        <li><div class="nav-item" data-section="auto-insurance">Auto <span class="status-pip partial"></span></div></li>
+        <li><div class="nav-item" data-section="health-insurance">Health <span class="status-pip"></span></div></li>
+        <li><div class="nav-item" data-section="life-insurance">Life <span class="status-pip"></span></div></li>
+        <li><div class="nav-item" data-section="travel-insurance">Travel <span class="status-pip"></span></div></li>
+      </ul></nav>
+    </div>
+
+    <div class="sidebar-group">
+      <div class="sidebar-label">Writing for surfaces</div>
+      <nav><ul>
+        <li>
+          <div class="nav-parent open" id="product-ui-toggle" onclick="toggleNav('product-ui')">
+            Product UI
+            <span class="chevron open" id="product-ui-chevron">›</span>
+          </div>
+          <ul class="sub-nav open" id="product-ui-subnav">
+            <li><div class="nav-item" data-section="ux-principles">UX writing principles <span class="status-pip" style="margin-left:auto"></span></div></li>
+            <li>
+              <div class="nav-parent sub open" id="patterns-toggle" onclick="toggleNav('patterns')">
+                Patterns and components
+                <span class="chevron open" id="patterns-chevron">›</span>
+              </div>
+              <ul class="deep-nav open" id="patterns-subnav">
+                <li><div class="nav-item" data-section="headers">Headers and subheaders <span class="status-pip" style="margin-left:auto"></span></div></li>
+                <li><div class="nav-item" data-section="body-copy">Body copy <span class="status-pip" style="margin-left:auto"></span></div></li>
+                <li><div class="nav-item" data-section="disclosure">Disclosure and helper text <span class="status-pip" style="margin-left:auto"></span></div></li>
+                <li><div class="nav-item" data-section="ctas">CTAs <span class="status-pip complete" style="margin-left:auto"></span></div></li>
+                <li><div class="nav-item" data-section="empty-states">Empty states <span class="status-pip" style="margin-left:auto"></span></div></li>
+                <li><div class="nav-item" data-section="loading-states">Loading states <span class="status-pip" style="margin-left:auto"></span></div></li>
+                <li><div class="nav-item" data-section="error-states">Error states <span class="status-pip" style="margin-left:auto"></span></div></li>
+                <li><div class="nav-item" data-section="success-states">Success states <span class="status-pip" style="margin-left:auto"></span></div></li>
+                <li><div class="nav-item" data-section="alert-cards">Alert and nudge cards <span class="status-pip" style="margin-left:auto"></span></div></li>
+                <li><div class="nav-item" data-section="modals">Modals and bottom sheets <span class="status-pip" style="margin-left:auto"></span></div></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><div class="nav-item" data-section="whatsapp">WhatsApp <span class="status-pip"></span></div></li>
+        <li><div class="nav-item" data-section="push">Push notifications <span class="status-pip"></span></div></li>
+        <li><div class="nav-item" data-section="marketing">Marketing and campaigns <span class="status-pip"></span></div></li>
+        <li><div class="nav-item" data-section="emails">Emails <span class="status-pip"></span></div></li>
+      </ul></nav>
+    </div>
+
+    <div class="sidebar-group">
+      <div class="sidebar-label">Accessibility and inclusion</div>
+      <nav><ul>
+        <li><div class="nav-item" data-section="readability">Readability <span class="status-pip"></span></div></li>
+        <li><div class="nav-item" data-section="inclusive-language">Inclusive language <span class="status-pip"></span></div></li>
+        <li><div class="nav-item" data-section="localisation">Localisation and translation <span class="status-pip"></span></div></li>
+      </ul></nav>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="content">
+
+    <!-- ── OVERVIEW ──────────────────────────── -->
+    <section class="content-section active" id="section-home">
+      <div class="card">
+        <p class="breadcrumb">ACKO CDS</p>
+        <h1 class="page-title">Content Design System</h1>
+        <p class="page-intro">The single source of truth for how ACKO writes — across product surfaces, channels, and teams.</p>
+
+        <div class="divider"></div>
+
+        <p class="body-sm" style="color:var(--color-text-tertiary)">This system is actively being built. One section is complete; more are in progress.</p>
+
+        <div class="overview-grid">
+          <div class="overview-card" onclick="navigate('voice-tone')">
+            <div class="ov-title">Voice and tone</div>
+            <div class="ov-desc">How ACKO sounds — and why it sounds that way.</div>
+            <div class="ov-status partial">In progress</div>
+          </div>
+          <div class="overview-card" onclick="navigate('surfaces')">
+            <div class="ov-title">Writing for surfaces</div>
+            <div class="ov-desc">App UX, WhatsApp, email, push, landing pages, and social.</div>
+            <div class="ov-status partial">In progress</div>
+          </div>
+          <div class="overview-card" onclick="navigate('lexicon')">
+            <div class="ov-title">Lexicon and terminology</div>
+            <div class="ov-desc">Preferred terms, product names, and insurance vocabulary.</div>
+            <div class="ov-status wip">Not started</div>
+          </div>
+          <div class="overview-card" onclick="navigate('ctas')">
+            <div class="ov-title">Patterns: CTAs</div>
+            <div class="ov-desc">Rules for writing calls to action — length, case, verbs, punctuation.</div>
+            <div class="ov-status complete">Complete</div>
+          </div>
+          <div class="overview-card" onclick="navigate('styles')">
+            <div class="ov-title">Styles and standards</div>
+            <div class="ov-desc">Punctuation, capitalisation, numbers, currency, and dates.</div>
+            <div class="ov-status wip">Not started</div>
+          </div>
+          <div class="overview-card" onclick="navigate('grammar')">
+            <div class="ov-title">Grammar and language</div>
+            <div class="ov-desc">English UK rules and Indian English conventions.</div>
+            <div class="ov-status wip">Not started</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── VOICE AND TONE ────────────────────── -->
+    <section class="content-section" id="section-voice-tone">
+      <div class="card">
+        <p class="breadcrumb">Content <span class="sep">›</span> Voice and tone</p>
+        <h1 class="page-title">Voice and tone <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">We're not a traditional insurance company that talks like a policy. We write for the human on the other end. So, no intimidating jargon or frustrating processes. We're here as a helping hand.</p>
+
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+            <div>
+              <div class="rule-heading" style="margin-bottom:8px">Voice — our personality</div>
+              <p class="rule-rationale">Voice is consistent. It's how we always sound, regardless of channel or context.</p>
+            </div>
+            <div>
+              <div class="rule-heading" style="margin-bottom:8px">Tone — our mood</div>
+              <p class="rule-rationale">Tone shifts with context. It reflects the emotional weight of the moment.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Core voice principle</div>
+          <p class="rule-rationale">ACKO is trying to make insurance feel understandable, usable, and dependable when something goes wrong. So, we should sound:</p>
+          <ul class="rule-rationale" style="margin:8px 0 0;padding-left:18px;line-height:2">
+            <li>Assuring</li>
+            <li>Plainspoken</li>
+            <li>Insightful, and</li>
+            <li>Transparent</li>
+          </ul>
+          <p class="rule-rationale" style="margin-top:16px">When copy pulls in different directions, use this priority order to decide what wins:</p>
+          <p class="rule-rationale"><strong>Trust &gt; clarity &gt; usefulness &gt; warmth &gt; cleverness</strong></p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Assuring</div>
+          <p class="rule-rationale">Insurance is tested when something goes wrong. That's when customers need ACKO to sound clear, steady, and in control.</p>
+          <p class="rule-rationale" style="margin-top:10px">How do we become assuring? By removing uncertainty, step by step. We explain what happened, what ACKO is doing, what the customer needs to do, and what happens next — clearly.</p>
+          <div class="when-grid">
+            <div class="when-box more">
+              <div class="when-label">When to be more assuring</div>
+              <p><strong>Customer is feeling:</strong> stressed, mid-claim, or something has just failed.</p>
+              <p><strong>Examples:</strong> Claim updates, hospitalisation support, roadside assistance, document checks, payment confirmations.</p>
+            </div>
+            <div class="when-box less">
+              <div class="when-label">When to be less assuring</div>
+              <p><strong>Customer is feeling:</strong> neutral, browsing, exploring, comparing.</p>
+              <p><strong>Examples:</strong> Landing pages, plan comparisons, product explainers, add-on education, pre-purchase journeys.</p>
+              <p>Too much reassurance here either feels like filler or, worse, plants doubt that wasn't there.</p>
+            </div>
+          </div>
+          <div class="examples" style="margin-top:16px">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your claim has been submitted. We'll review the details and update you by tomorrow.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Woohoo! Your claim journey has started.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Plainspoken</div>
+          <p class="rule-rationale">Insurance should not need a translator.</p>
+          <p class="rule-rationale" style="margin-top:10px">Plainspoken means saying what matters in words people understand: what's covered, what's not, what it costs, what to do next, and what could affect a claim. We make the important things easy to find, easy to read, and hard to misunderstand.</p>
+          <div class="when-grid">
+            <div class="when-box more">
+              <div class="when-label">When to be more plainspoken</div>
+              <p><strong>Customer is feeling:</strong> confused, time-pressed, cautious, trying to complete a task.</p>
+              <p><strong>Examples:</strong> Quote flows, policy summaries, exclusions, claim forms, payment screens, error states, FAQs.</p>
+            </div>
+            <div class="when-box less">
+              <div class="when-label">When to be less plainspoken</div>
+              <p>Almost never. Plainspoken is ACKO's default.</p>
+              <p>A term can be written in legal or regulatory language — but we should always explain it in a way customers can understand quickly and clearly.</p>
+              <p><strong>Example:</strong> IDV (Insured Declared Value) — The current value of your car according to the insurer. If your car is stolen or damaged beyond repair, this is usually the maximum amount your insurer will pay you.</p>
+            </div>
+          </div>
+          <div class="examples" style="margin-top:16px">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">You'll need to pay ₹2,000 because your policy has a deductible. ACKO will cover the remaining approved amount.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Applicable deductible shall be borne by the insured as stated in the policy.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Insightful</div>
+          <p class="rule-rationale">Being insightful means being the most informed person in the room — and using that knowledge to help the customer choose well, not to push them toward what we want to sell. Tell users something they didn't know they needed to know.</p>
+          <div class="when-grid">
+            <div class="when-box more">
+              <div class="when-label">When to be more insightful</div>
+              <p><strong>Customer is feeling:</strong> curious, deliberating, comparing, doing their homework.</p>
+              <p><strong>Examples:</strong> Landing pages, plan comparisons, in-app educational content, pre-purchase WhatsApp nudges, policy explainers.</p>
+            </div>
+            <div class="when-box less">
+              <div class="when-label">When to be less insightful</div>
+              <p><strong>Customer is feeling:</strong> anxious, in crisis, time-pressed, mid-claim.</p>
+              <p><strong>Examples:</strong> Claim communications, error states, emergency flows, payment failures.</p>
+              <p>In these moments, the customer doesn't need more information — they need the next step.</p>
+            </div>
+          </div>
+          <div class="examples" style="margin-top:16px">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your PUC expires in 3 days. Renew it now to avoid a fine.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Your PUC is about to expire soon. Take action immediately!</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Transparent</div>
+          <p class="rule-rationale">No sugarcoating the tough stuff. Transparent means giving exclusions the same space as coverages — and putting both where the reader can see them. If it could catch someone off guard at claim time, say it upfront.</p>
+          <div class="when-grid">
+            <div class="when-box more">
+              <div class="when-label">When to be more transparent</div>
+              <p><strong>Customer is feeling:</strong> cautious, evaluating risk, reading fine print, deciding whether to buy.</p>
+              <p><strong>Examples:</strong> Exclusions, waiting periods, deductibles, sub-limits, claim eligibility criteria, renewal terms, premium changes, refund policies, T&amp;Cs.</p>
+            </div>
+            <div class="when-box less">
+              <div class="when-label">When to be less transparent</div>
+              <p>If this question even came up in your head, go back and write it more transparently.</p>
+            </div>
+          </div>
+          <div class="examples" style="margin-top:16px">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">₹4,500 is not covered because consumables are not included in your policy.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Certain charges may be payable by you.</span></div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Tone by line of business</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>LOB</th><th>Sound like</th><th>Example</th></tr></thead>
+              <tbody>
+                <tr><td>Auto insurance</td><td>Assuring, fair, steady</td><td>"Your claim is under review. We're checking the garage estimate and will update you by 6 PM today."</td></tr>
+                <tr><td>Health</td><td>Plainspoken, steady, supportive</td><td>"Your policy covers accidents from day 1. Illness-related hospitalisation is covered after the 30-day waiting period."</td></tr>
+                <tr><td>Travel</td><td>Prepared, practical, calm</td><td>"Your flight delay may be covered if it crosses the minimum delay period in your policy. Keep your boarding pass and delay confirmation ready."</td></tr>
+                <tr><td>Policy purchase</td><td>Clear, direct</td><td>Lead with what the plan covers; state exclusions upfront</td></tr>
+                <tr><td>Renewal reminders</td><td>Helpful, not alarmist</td><td>Trigger + consequence + action. Never fear-first.</td></tr>
+                <tr><td>Claim approval</td><td>Positive but composed</td><td>Confirm + timeline + next step. No exclamation marks.</td></tr>
+                <tr><td>Claim rejection</td><td>Direct, fair, with next steps</td><td>State the fact, the cause, and the user's option. No build-up.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+
+
+
+
+
+      </div>
+    </section>
+
+    <!-- ── WRITING FOR SURFACES ──────────────── -->
+    <section class="content-section" id="section-surfaces">
+      <div class="card">
+        <p class="breadcrumb">Content <span class="sep">›</span> Writing for surfaces</p>
+        <h1 class="page-title">Writing for surfaces <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">The same message lands differently on every surface. Match your register to where the reader is.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">App UX / in-product</div>
+          <p class="rule-rationale">Functional writing. The reader is mid-task and needs to move. Every word should earn its place. If something is going wrong, say it clearly and immediately — no softening, no burying. Tone: calm and direct. Not warm, not cold. Just clear.</p>
+          <div class="callout">The UX copy principles that govern this surface: <strong>Check if copy is required → Be very clear → Be concise → Be useful → Be conversational → Be the brand.</strong> In that order.</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Landing pages</div>
+          <p class="rule-rationale">The user is deciding whether to trust ACKO. Lead with what they need to know, not what ACKO wants to say. Anticipate the doubt and answer it before they have to ask. Be insightful — not just promotional.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Do</span><span class="ex-text">Answer the question the user is already asking — "Will this actually cover me?" — before they have to scroll to find it</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Leading with ACKO's awards and recognitions before explaining what the product does</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">WhatsApp</div>
+          <p class="rule-rationale">Conversational but never casual. People expect a person here, not brand language. Every message should give the reader something useful — not just a nudge. Weave the user's name in organically, never at the start.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Element</th><th>Rule</th></tr></thead>
+              <tbody>
+                <tr><td>Header</td><td>Under 40 characters. Clear, compelling, context-setting. Makes the user want to read more.</td></tr>
+                <tr><td>Body</td><td>400–500 characters ideal; under 100 words. More than 60 words requires scrolling.</td></tr>
+                <tr><td>First line</td><td>Don't open with "Hey [Name]". Bold the first line to grab attention. ~3 seconds to hook the user.</td></tr>
+                <tr><td>Name</td><td>Weave it in organically — never at the start. "It doesn't get better, Kavita!" ✅ "Hi Kavita," ❌</td></tr>
+                <tr><td>Quick replies</td><td>Up to 3. More than 3 confuses the user.</td></tr>
+                <tr><td>Sign-off</td><td>No sign-off. No "Thanks, Team ACKO".</td></tr>
+                <tr><td>Structure</td><td>Line 1–2: hook → Line 3–5: context/value → Remaining: details, benefits, CTA</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Email</div>
+          <p class="rule-rationale">More room than other channels — but not an invitation to fill the space. The most important thing goes in the first two lines. Subject lines say the actual thing. Email is where policy updates, renewal reminders, and claim communications live — all high-stakes moments where plain, direct writing matters most.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Element</th><th>Rule</th></tr></thead>
+              <tbody>
+                <tr><td>Subject line</td><td>Under 8 words — longer lines get cut off. Say the actual thing. Max 1 emoji.</td></tr>
+                <tr><td>Subject line focus</td><td>"Payment successful for your plan" ✅ &nbsp; "Good news about your plan" ❌</td></tr>
+                <tr><td>CTA</td><td>Must be in the first fold. Lets the user act immediately.</td></tr>
+                <tr><td>Heading</td><td>Start with "we" or "you". No names or personalisation in the heading.</td></tr>
+                <tr><td>Sign-off</td><td>No "Team ACKO" sign-off.</td></tr>
+                <tr><td>Subtext</td><td>Optional. Skip if not needed.</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Subject: Your policy expires in 3 days</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Heading: You need to schedule a health check</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Subject: We have great news about your insurance plan</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Heading: Lab visit required (passive, impersonal)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Social media</div>
+          <p class="rule-rationale">Where ACKO's personality shows more than its principles. Wit and timing matter as much as voice. The one thing that doesn't change: don't oversell, and don't say things on social that can't be backed up everywhere else.</p>
+          <div class="callout">The voice can be playful and insightful on social — but stay consistent with the trust-first order. Never say something on social that would fail the Transparent or Assuring test in another channel.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── UNIVERSAL WRITING RULES ─────────────── -->
+    <section class="content-section" id="section-universal-rules">
+      <div class="card">
+        <p class="breadcrumb">Content <span class="sep">›</span> Universal writing rules</p>
+        <h1 class="page-title">Universal writing rules <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">These hold across every surface, channel, and product. If a piece of copy fails any of these, rewrite.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Always</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th style="background:var(--color-success-subtle);color:var(--color-success-text)">Rule</th><th style="background:var(--color-success-subtle);color:var(--color-success-text)">What it means in practice</th></tr></thead>
+              <tbody>
+                <tr><td>Lead with the user's outcome</td><td>Tell the user what this means for them first</td></tr>
+                <tr><td>Write in second person</td><td>Use "you" and "your". Avoid "customer", "policyholder", "insured", or "claimant" unless legally required</td></tr>
+                <tr><td>Prefer active voice</td><td>"We're reviewing your claim" not "Your claim is being reviewed"</td></tr>
+                <tr><td>Give the next step</td><td>Every message must answer "What should I do now?"</td></tr>
+                <tr><td>Use exactness</td><td>Amounts, dates, time windows, documents, claim stages, payment responsibility</td></tr>
+                <tr><td>Explain why</td><td>Especially when asking for documents, permissions, payment, health details</td></tr>
+                <tr><td>Make the catch visible</td><td>Waiting periods, exclusions, deductibles, co-pay, add-ons, limits, non-covered items</td></tr>
+                <tr><td>Match the user's emotional state</td><td>Accident = calm; hospitalisation = supportive; purchase = clear; rejection = direct and fair</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Never</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th style="background:var(--color-error-subtle);color:var(--color-error-text)">Never do this</th><th style="background:var(--color-error-subtle);color:var(--color-error-text)">Because</th></tr></thead>
+              <tbody>
+                <tr><td>Overpromise</td><td>Avoid "guaranteed approval", "instant claim settlement", "100% covered" unless factually true</td></tr>
+                <tr><td>Hide behind T&amp;Cs</td><td>Avoid "subject to terms and conditions" — explain the actual condition</td></tr>
+                <tr><td>Make insurance sound like a party</td><td>Avoid hype in serious categories</td></tr>
+                <tr><td>Blame the user</td><td>"These details don't match our records" not "You entered incorrect details"</td></tr>
+                <tr><td>Use vague service language</td><td>"We're checking your documents. This takes up to 2 hours" not "We're processing your request"</td></tr>
+                <tr><td>Hard-sell</td><td>Avoid urgency traps unless the urgency is real</td></tr>
+                <tr><td>Use cleverness when clarity is needed</td><td>Especially in claims, payments, exclusions, emergencies, or failed actions</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── LEXICON ────────────────────────────── -->
+    <!-- ── LEXICON ───────────────────────────── -->
+    <section class="content-section" id="section-lexicon">
+      <div class="card">
+        <p class="breadcrumb">Content <span class="sep">›</span> Words and phrases</p>
+        <h1 class="page-title">Words and phrases <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">Insurance has its own vocabulary. Spell terms out the first time. Abbreviations are fine after that.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Introduce terms before abbreviating</div>
+          <p class="rule-rationale">Write the full term first, then the abbreviation in brackets. After that, the abbreviation alone is fine.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">"No Claim Bonus (NCB)" on first mention, then "NCB"</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">"Pre-existing disease (PED)" on first mention, then "PED"</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">NCB, IDV, and PED without any explanation</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Terms that can stay abbreviated</div>
+          <p class="rule-rationale">These are in common enough use that they don't need spelling out every time.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Abbreviation</th><th>Full term</th></tr></thead>
+              <tbody>
+                <tr><td>PAN</td><td>Permanent Account Number</td></tr>
+                <tr><td>GST</td><td>Goods and Services Tax</td></tr>
+                <tr><td>UPI</td><td>Unified Payments Interface</td></tr>
+                <tr><td>OTP</td><td>One-Time Password</td></tr>
+                <tr><td>SMS</td><td>Short Message Service</td></tr>
+                <tr><td>PDF</td><td>Portable Document Format</td></tr>
+                <tr><td>FASTag</td><td>FASTag</td></tr>
+                <tr><td>PUC</td><td>Pollution Under Control</td></tr>
+                <tr><td>RC</td><td>Registration Certificate</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Insurance terms that need explanation</div>
+          <p class="rule-rationale">These terms appear frequently but are unfamiliar to most users. Always explain them in context — don't assume the user knows what they mean.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Term</th><th>How to introduce it</th></tr></thead>
+              <tbody>
+                <tr><td>Deductible</td><td>Explain as the amount the user pays before ACKO covers the rest</td></tr>
+                <tr><td>Co-pay</td><td>Explain as the percentage of the claim the user shares</td></tr>
+                <tr><td>Waiting period</td><td>Explain as the time before a condition is covered</td></tr>
+                <tr><td>Exclusion</td><td>Explain as what the policy does not cover</td></tr>
+                <tr><td>Consumables</td><td>Explain as items like gloves, syringes — often not covered</td></tr>
+                <tr><td>IDV (Insured Declared Value)</td><td>Explain as the current market value of the vehicle</td></tr>
+                <tr><td>NCB (No Claim Bonus)</td><td>Explain as a discount earned for not making claims</td></tr>
+                <tr><td>Zero depreciation</td><td>Explain as full part replacement without age-related deduction</td></tr>
+                <tr><td>Network hospital</td><td>Explain as hospitals where cashless treatment is available</td></tr>
+                <tr><td>Cashless claim</td><td>Explain as treatment without upfront payment at network hospitals</td></tr>
+                <tr><td>Reimbursement claim</td><td>Explain as paying first, then claiming back from ACKO</td></tr>
+                <tr><td>Pre-existing disease (PED)</td><td>Explain as a health condition that existed before the policy started</td></tr>
+                <tr><td>Room rent limit</td><td>Explain as the maximum daily room charge the policy covers</td></tr>
+                <tr><td>Sum insured</td><td>Explain as the maximum amount the policy will pay out</td></tr>
+                <tr><td>Super top-up</td><td>Explain as additional coverage that kicks in after the base plan is exhausted</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Compliance: words to avoid</div>
+          <p class="rule-rationale">ACKO operates in a regulated industry. Avoid superlatives and unverifiable claims. You can reference official accreditations, but only in the exact form they were awarded.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">India's #1 rated insurance app (if officially awarded)</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Best Digital Insurance, 2025 (if officially awarded)</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">We are the best</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">We are the most trusted / fastest / most comprehensive</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── UX WRITING PRINCIPLES ───────────────── -->
+    <section class="content-section" id="section-ux-principles">
+      <div class="card">
+        <p class="breadcrumb">Writing for surfaces › Product UI <span class="sep">›</span> UX writing principles</p>
+        <h1 class="page-title">UX writing principles <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">Before writing a single word, run it through these six principles — in order. They're a filter, not a checklist.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">1. Check if copy is required</div>
+          <p class="rule-rationale">If a design solution can replace copy and reduce cognitive load, don't write. Copy that explains a bad design is still bad design. Ask: can an icon, layout, or visual hierarchy do this instead?</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Do</span><span class="ex-text">Use a progress bar to show step position instead of "Step 2 of 4"</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Adding a paragraph to explain what a clearly labelled toggle does</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">2. Be very clear</div>
+          <p class="rule-rationale">Write in complete sentences. Explain jargon the moment you use it. Avoid ambiguity — if a sentence can be read two ways, it will be read the wrong way. Clarity always beats brevity when they conflict.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your deductible is ₹2,000 — this is the amount you pay before ACKO covers the rest.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Applicable deductible: ₹2,000</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">3. Be concise</div>
+          <p class="rule-rationale">Right level of detail — no more. No filler words, no throat-clearing, no restating what was already said. Pick the shorter word when both work equally well.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Upload your PAN card</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">"Use" not "utilise"</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Please upload a copy of your PAN card document in order to proceed</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">"In the event that" instead of "if"</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">4. Be useful</div>
+          <p class="rule-rationale">Every piece of copy should move the user toward their goal. Explain current status so they know where they are. Suggest the next action. If something goes wrong, tell them what to do — not just what happened.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Payment failed. Check your card details and try again, or use a different payment method.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Payment failed. (no next step)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">5. Be conversational</div>
+          <p class="rule-rationale">Use personal pronouns (you, your, we, our). Keep syntax simple. Active voice. Short sentences. Write the way a knowledgeable person would explain something to a friend — not the way a policy document would state it.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">We'll send you a reminder 3 days before your policy expires.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">A reminder notification shall be dispatched to the insured 3 days prior to policy expiry.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">6. Be the brand</div>
+          <p class="rule-rationale">Use brand-value references. Make positive associations only — with preparedness, transparency, and dependability. Not with excitement, fear, or pressure. If in doubt, ask: does this sound like ACKO, or does it sound like any insurance company?</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your documents are verified. You're covered from today.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Congratulations! You're now protected against life's uncertainties! 🎉</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Components at a glance</div>
+          <p class="rule-rationale">Every screen is made up of the same components. Each has a specific job — don't let one do another's work.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Component</th><th>Job</th><th>Key rule</th></tr></thead>
+              <tbody>
+                <tr><td>Page title</td><td>Describes the whole screen</td><td>Under 2–3 lines. No names or variables. Must make sense without subtext. Sentence case. No full stop unless other punctuation is used.</td></tr>
+                <tr><td>Heading</td><td>Section-level label</td><td>Same rules as page title. Should stand alone.</td></tr>
+                <tr><td>Subtext</td><td>Secondary detail below a title or heading</td><td>Minimise. Most users don't read it. If the info is important, put it in the heading.</td></tr>
+                <tr><td>Paragraph / body copy</td><td>Supporting explanation</td><td>Full sentences. One idea per line. Break into bullets when scannable. Bold key information.</td></tr>
+                <tr><td>CTA</td><td>The user's response to what we're saying</td><td>From the user's POV. 4–6 words max. No punctuation except apostrophes.</td></tr>
+                <tr><td>Bottom sheet</td><td>Explain or add information</td><td>Max half the screen. CTA = "Got it". If content-heavy, use info boxes.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTAs — COMPLETE ───────────────────── -->
+    <section class="content-section" id="section-ctas">
+      <div class="card">
+        <p class="breadcrumb">Patterns and components <span class="sep">›</span> CTAs</p>
+        <h1 class="page-title">CTAs <span class="title-tag complete">Complete</span></h1>
+        <p class="page-intro">The surrounding copy carries the message. The CTA just confirms the action.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Write from the user's point of view</div>
+          <p class="rule-rationale">Write it as the user would think it, not as ACKO would instruct it. First-person works especially well at high-stakes moments like active claims.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">See my recommended plan</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">I want an update on my claim</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">View recommended plan</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Check claim status</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Keep it short</div>
+          <p class="rule-rationale">Six words max. Two or three is ideal.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Renew now</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Download policy</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Add vehicle</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Click here to renew your policy</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Download a copy of your policy document</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Click the button to add your vehicle</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Sentence case, always</div>
+          <p class="rule-rationale"><strong>Exception:</strong> ACKO is always written in caps.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Transfer to ACKO</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Get a quote</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Transfer To ACKO</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">RENEW NOW</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">No punctuation</div>
+          <p class="rule-rationale">Apostrophes are the only exception.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Let's get started</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Check what's covered</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Get started!</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Renew now.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Use numbers for speed and effort</div>
+          <p class="rule-rationale">A number is more convincing than an adverb. Only use a time claim if the flow delivers it.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Renew in 2 mins</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Done in 3 steps</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Renew quickly</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Done in minutes</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Consistent verb conventions</div>
+          <p class="rule-rationale">Each verb has a specific use. Don't swap them freely.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Verb</th><th>When to use</th><th>Example</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>View</td><td>Something that already belongs to the user</td><td>View policy, View breakdown</td></tr>
+                <tr><td>Check</td><td>A lookup or external query</td><td>Check challans, Check vehicle info</td></tr>
+                <tr><td>Explore</td><td>Introducing a product or service</td><td>Explore car insurance, Explore Safe Drop</td></tr>
+                <tr><td>Download</td><td>Fetching a document</td><td>Download policy, Download e-card</td></tr>
+                <tr><td>Add</td><td>Creating or attaching something new</td><td>Add vehicle, Add nominee</td></tr>
+                <tr><td>Learn more / Know more</td><td>Both acceptable — don't mix on the same screen</td><td>Learn more about this plan</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">The right CTA for the moment</div>
+          <p class="rule-rationale">Some situations always call for the same CTA.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Situation</th><th>CTA</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>You're explaining or informing</td><td>Got it</td></tr>
+                <tr><td>Error, end screen, or information screen</td><td>Okay</td></tr>
+                <tr><td>Multi-step flow, moving between steps</td><td>Continue</td></tr>
+                <tr><td>Destructive or irreversible action</td><td>Confirm what's being lost, not just the action — e.g. "Yes, cancel my policy"</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="callout">
+            <strong>Destructive actions:</strong> Name what will be lost, not just the action. "Yes, cancel my policy" not "Confirm".
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── HEADERS ───────────────────────────── -->
+    <section class="content-section" id="section-headers">
+      <div class="card">
+        <p class="breadcrumb">Patterns and components <span class="sep">›</span> Headers and subheaders</p>
+        <h1 class="page-title">Headers and subheaders <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">The header carries the full weight of the screen. Write it so it can stand alone.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Sentence case, always</div>
+          <p class="rule-rationale">Capitalise only the first letter of the sentence. Use title case for proper nouns only — product names, plans, ACKO.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your claim is under review</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Get the ACKO Platinum Health Plan</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Your Claim Is Under Review</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Get The Acko Platinum Health Plan</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">No full stop at the end</div>
+          <p class="rule-rationale">Never end a page title, heading, or subheader with a full stop. <strong>Exception:</strong> if you use any other punctuation in the heading (a comma, colon, or question mark), then end the sentence with a full stop.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Upload your PAN card</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Already have a plan? Switch to ACKO.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Upload your PAN card.</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Already have a plan? Switch to ACKO</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Stay under 2 lines</div>
+          <p class="rule-rationale">3 lines is the absolute limit. A header that runs longer usually means two ideas are being forced into one — split them or simplify.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your policy is active</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Your policy has been activated and is now ready for you to use across all your healthcare needs</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Don't depend on the subtext</div>
+          <p class="rule-rationale">The header should make complete sense on its own. If the meaning only works when you read the subtext underneath, rewrite the header.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">We need your Aadhaar to verify your identity</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Header: One more thing / Subtext: We need your Aadhaar to verify your identity</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">No user names or custom text in headers</div>
+          <p class="rule-rationale">Inserting a name changes the line length unpredictably and can break the meaning. Keep headers stable and generic.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your policy renewal is due</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Hi Priya, your policy renewal is due</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Use subtext sparingly</div>
+          <p class="rule-rationale">Subtext below a header adds context that didn't fit the header. If the information is critical, it belongs in the header. If no one would miss it, skip the subtext entirely.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Header: Add a nominee / Subtext: They'll receive the payout if a claim is approved</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Subtext: ACKO requires you to nominate a person who will receive the claim amount in the unfortunate event of your passing</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BODY COPY ─────────────────────────── -->
+    <section class="content-section" id="section-body-copy">
+      <div class="card">
+        <p class="breadcrumb">Patterns and components <span class="sep">›</span> Body copy</p>
+        <h1 class="page-title">Body copy <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">Body copy adds context below the header. If the header already does the job, skip it.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">One message per sentence</div>
+          <p class="rule-rationale">Combining two ideas in one sentence makes both harder to absorb. Say one thing, then stop. Start a new sentence for the next idea.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your cashless request has been submitted. We'll send an update within 2 hours.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Your cashless request has been submitted and we will review it and send you an update soon.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Use full sentences</div>
+          <p class="rule-rationale">Fragments feel incomplete and often force the user to infer meaning. Write in full sentences — subject, verb, outcome.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">We need this to verify your identity before processing the claim.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">For identity verification and claim processing purposes.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Active voice, second person</div>
+          <p class="rule-rationale">Write in active voice. Always address the user as "you". Never use "customer", "policyholder", "insured", or "claimant" unless legally required.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">You'll receive the payout within 5 business days.</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">We've updated your policy.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">The payout will be received by the policyholder.</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">The policy has been updated.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Highlight key information</div>
+          <p class="rule-rationale">Bold amounts, dates, deadlines, and document names when they appear inline. Don't bold decoratively — only use it for information the user needs to act on or remember.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your premium of <strong>₹4,200</strong> is due by <strong>15 June</strong>.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Your <strong>premium</strong> is <strong>due</strong> soon. Please <strong>pay</strong> it.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Lead with the user's outcome</div>
+          <p class="rule-rationale">Start with what happened or what the user gets — not with ACKO's process. The user's outcome is what they care about first.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your claim is approved. ₹12,000 will be transferred to your bank account.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">We have completed our review process and are pleased to inform you that your claim has been approved.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EMPTY STATES ──────────────────────── -->
+    <section class="content-section" id="section-empty-states">
+      <div class="card">
+        <p class="breadcrumb">Patterns and components <span class="sep">›</span> Empty states</p>
+        <h1 class="page-title">Empty states <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">Empty states are not errors — don't apologise for them. State what's missing and give the user something to do next.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">State what's absent, not what went wrong</div>
+          <p class="rule-rationale">An empty state is usually neutral — nothing has failed. Don't frame it as an error. Tell the user why the space is empty and what they can do.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">No policies added yet. Add a vehicle to get started.</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">No claims filed. Your claim history will appear here.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Oops! Nothing to see here.</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Sorry, you don't have any claims yet.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">First-time vs. cleared states</div>
+          <p class="rule-rationale">A first-time empty state needs more context — the user doesn't know what this section is for yet. A cleared state (e.g. all notifications read) needs less.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>State</th><th>What to say</th><th>Example</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>First-time</td><td>Explain the section + invite action</td><td>"No documents uploaded. We'll ask for documents when you file a claim."</td></tr>
+                <tr><td>Cleared</td><td>Confirm and optionally invite action</td><td>"You're all caught up. No new notifications."</td></tr>
+                <tr><td>Filtered / no results</td><td>Explain the filter + offer a next step</td><td>"No claims match this date range. Try a different period."</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Give a next step where it makes sense</div>
+          <p class="rule-rationale">If there's an obvious action the user can take to fill the state, include it. If the state is genuinely passive (nothing to do), don't force a CTA.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">No saved addresses. Add one for faster checkout.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">No claim history yet. Explore our plans! (non-sequitur CTA)</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ERROR STATES ──────────────────────── -->
+    <section class="content-section" id="section-error-states">
+      <div class="card">
+        <p class="breadcrumb">Patterns and components <span class="sep">›</span> Error states</p>
+        <h1 class="page-title">Error states <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">Errors are already stressful. The copy should reduce that stress — not add to it. State what happened, why, and what to do next. Then stop.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Don't blame the user</div>
+          <p class="rule-rationale">Frame errors around what happened, not what the user did wrong. Blame creates friction and damages trust.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">These details don't match our records. Please check and try again.</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">We couldn't verify your PAN. Please upload a clearer photo.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">You entered incorrect details.</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Your photo is too blurry.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">No "Oops" — stay calm</div>
+          <p class="rule-rationale">Words like "Oops!", "Uh oh!", or exclamation marks make errors feel more alarming. Use calm, direct language instead.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Payment unsuccessful. Please check your card details and try again.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Oops! Something went wrong with your payment!</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Always give a recovery path</div>
+          <p class="rule-rationale">Every error message must tell the user what to do next. An error with no next step leaves the user stranded.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">We couldn't load your policy details. Pull down to refresh, or contact us if this keeps happening.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Something went wrong.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Deliver bad news plainly</div>
+          <p class="rule-rationale">Get to the point. Framing bad news with softening preamble ("We have some unfortunate news to share with you…") delays the information and reads as evasive.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">We couldn't approve your cashless request. Your documents were outdated.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">It may be disheartening but your cashless request was not approved.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Use "sorry" only when it's ACKO's fault</div>
+          <p class="rule-rationale">Don't apologise for user errors, network issues, or things outside ACKO's control. When ACKO is genuinely at fault, say sorry — but don't follow it with "but".</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Sorry, we couldn't cancel your medical tests — the doctor was unavailable.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Sorry for the delay, but no agents are available right now.</span></div>
+            </div>
+          </div>
+          <div class="callout">
+            <strong>Rule:</strong> Never follow "sorry" with "but". It cancels the apology.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── SUCCESS STATES ────────────────────── -->
+    <section class="content-section" id="section-success-states">
+      <div class="card">
+        <p class="breadcrumb">Patterns and components <span class="sep">›</span> Success states</p>
+        <h1 class="page-title">Success states <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">Confirm what happened, then tell the user what happens next. Positive but composed — not a celebration.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Confirm, then give the next step</div>
+          <p class="rule-rationale">A success state has two jobs: confirm what happened and tell the user what to expect next. Don't stop at confirmation alone.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your claim has been submitted. We'll review the details and update you by tomorrow.</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Payment successful. Your policy is now active.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Woohoo! Your claim journey has started.</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Payment done! (no next step)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Claims and emergencies: stay composed</div>
+          <p class="rule-rationale">When the context involves a claim, hospital, accident, or emergency — keep the tone calm and controlled. No exclamation marks, no emojis, no over-celebration.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your cashless request is approved. The hospital will be notified within 30 minutes.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Great news! 🎉 Your claim is approved!</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Include timelines and specifics</div>
+          <p class="rule-rationale">Specific timelines reduce follow-up anxiety. Tell the user when they'll hear back, when money will arrive, or when the policy kicks in. Vague language creates doubt.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">₹12,000 will be credited to your bank account within 3–5 business days.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">The amount will be transferred shortly.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">What to include in a success state</div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Context</th><th>What to confirm</th><th>What to add</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Policy purchase</td><td>Policy is active</td><td>Policy number, document download link</td></tr>
+                <tr><td>Claim submission</td><td>Claim is received</td><td>Claim ID, expected timeline, next step</td></tr>
+                <tr><td>Payment</td><td>Payment successful</td><td>Amount, transaction ID, what it covers</td></tr>
+                <tr><td>Profile update</td><td>Change saved</td><td>What changed — only if non-obvious</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ALERT CARDS ───────────────────────── -->
+    <section class="content-section" id="section-alert-cards">
+      <div class="card">
+        <p class="breadcrumb">Patterns and components <span class="sep">›</span> Alert and nudge cards</p>
+        <h1 class="page-title">Alert and nudge cards <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">Alerts look out for the user before a risk becomes a loss. The formula is simple: trigger + consequence + action. Helpful, not alarmist.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Trigger + consequence + action</div>
+          <p class="rule-rationale">An alert that only states a trigger ("Your PUC is expiring") gives the user nothing to act on. Include the consequence so they understand why it matters, then give the action.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your PUC expires in 3 days. Renew it now to avoid a fine.</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your policy renews on 15 June. Pay now to avoid a lapse in coverage.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Your PUC is about to expire soon. Take action immediately!</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Your policy is expiring.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Use exact numbers, not approximations</div>
+          <p class="rule-rationale">Specific numbers are more actionable than vague ones. "3 days" creates a deadline. "soon" creates vague unease.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">₹2,500 is due in 2 days.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">A payment is due very soon.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Helpful, not alarmist</div>
+          <p class="rule-rationale">Alerts should create a sense of usefulness, not panic. Don't overstate risk or use fear as the hook. State the risk plainly and give the user agency.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your motor policy expires in 7 days. Renew to stay covered.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Warning! Your policy is expiring! You're at risk of huge fines and financial loss!</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Tone by alert type</div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Type</th><th>Tone</th><th>Example</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Renewal reminder</td><td>Helpful, direct</td><td>"Your policy renews in 5 days. Renew now to avoid a gap."</td></tr>
+                <tr><td>Compliance deadline</td><td>Factual, specific</td><td>"Your PUC expires tomorrow. Renew to avoid a ₹2,000 fine."</td></tr>
+                <tr><td>Claim update</td><td>Calm, assuring</td><td>"We need one more document to process your claim."</td></tr>
+                <tr><td>Nudge / upsell</td><td>Plainspoken, not pushy</td><td>"Your plan doesn't cover maternity. Add it before your next renewal."</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── LOADING STATES ────────────────────── -->
+    <section class="content-section" id="section-loading-states">
+      <div class="card">
+        <p class="breadcrumb">Patterns and components <span class="sep">›</span> Loading states</p>
+        <h1 class="page-title">Loading states <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">Tell the user what's happening and how long it will take. Vague loading copy creates anxiety. Specific copy creates trust.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Name what's happening</div>
+          <p class="rule-rationale">Generic loading messages tell the user nothing. Name the specific action so they know the system is working on the right thing.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">We're checking your documents. This usually takes up to 2 hours.</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Verifying your payment details…</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Processing your request…</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Please wait…</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Give a time estimate</div>
+          <p class="rule-rationale">If a process takes more than a few seconds, tell the user how long. A specific estimate is more reassuring than silence or vague language.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your claim is being reviewed. We'll update you within 24 hours.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Your claim is being processed. Please wait.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Use "please" when asking the user to wait</div>
+          <p class="rule-rationale">"Please" softens an instruction when the user is being asked to do something inconvenient — like wait. Use it here, but don't use it as a filler elsewhere.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Please wait while we look for an agent.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Please check your premium details (no waiting involved)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Loading copy by wait length</div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Wait time</th><th>What to show</th><th>Example</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Under 3 seconds</td><td>Spinner + action name</td><td>"Verifying details…"</td></tr>
+                <tr><td>3–30 seconds</td><td>Action name + context</td><td>"Confirming your payment. This takes a few seconds."</td></tr>
+                <tr><td>Minutes to hours</td><td>Action + specific timeline + what happens next</td><td>"We're checking your documents. This usually takes up to 2 hours. We'll notify you when it's done."</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── MODALS ────────────────────────────── -->
+    <section class="content-section" id="section-modals">
+      <div class="card">
+        <p class="breadcrumb">Patterns and components <span class="sep">›</span> Modals and bottom sheets</p>
+        <h1 class="page-title">Modals and bottom sheets <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">Modals interrupt the user's flow. Use them to explain or confirm — not fill space. Always give a clear exit.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Bottom sheets explain — they don't decorate</div>
+          <p class="rule-rationale">Bottom sheets should clarify something on the current screen or confirm an action the user is about to take. Don't use them to host primary flows or replace full screens.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">A bottom sheet explaining what "co-pay" means after the user taps a help icon</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">A confirmation sheet before a destructive action: Are you sure you want to cancel your policy?</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">A bottom sheet with a full multi-field form</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">A bottom sheet that takes up more than half the screen</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Keep it under half the screen</div>
+          <p class="rule-rationale">If the content needs more than half the screen, it's too much for a bottom sheet. Move heavy content into info boxes, bullet points, or a dedicated screen instead.</p>
+          <div class="callout">
+            If a bottom sheet is content-heavy, break the copy into structured elements — short header, bullet points, or info cards — rather than long paragraphs.
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Informational sheets always use Got it</div>
+          <p class="rule-rationale">When a bottom sheet is explaining something (not asking for a decision), the only CTA needed is "Got it". Don't use "Okay", "Continue", or "Close".</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Got it — for explanation or info sheets</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Yes, cancel my policy / Keep my policy — for decision sheets</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Close or Dismiss on informational sheets</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Confirm on destructive actions — name what's being confirmed</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">CTA pairs for decision sheets</div>
+          <p class="rule-rationale">When a bottom sheet asks the user to decide, the CTA pair should make both options clear. The secondary action should be the escape — not "Cancel", but the specific thing they're keeping.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Situation</th><th>Primary CTA</th><th>Secondary CTA</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Cancel policy</td><td>Yes, cancel my policy</td><td>Keep my policy</td></tr>
+                <tr><td>Remove nominee</td><td>Remove nominee</td><td>Keep nominee</td></tr>
+                <tr><td>Delete document</td><td>Delete</td><td>Keep it</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DISCLOSURE ────────────────────────── -->
+    <section class="content-section" id="section-disclosure">
+      <div class="card">
+        <p class="breadcrumb">Patterns and components <span class="sep">›</span> Disclosure and helper text</p>
+        <h1 class="page-title">Disclosure and helper text <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">Helper text guides the user through a field. Disclosures make the catch visible. Both should read like a person wrote them — not a legal team.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Answer the field question</div>
+          <p class="rule-rationale">Helper text sits below or inside a field and tells the user exactly what format or value to enter. Keep it to one short sentence. It disappears once the user types — so front-load the useful information.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Enter your 10-digit mobile number</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Date of birth in DD/MM/YYYY format</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Please enter your mobile number here</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">This field is mandatory</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Placeholder text is not helper text</div>
+          <p class="rule-rationale">Placeholder text disappears when the user starts typing — so it can't carry instructions the user might need mid-entry. Use it only for examples of valid input, not for rules.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Placeholder: Eg: 9876543210 + Helper: Enter your 10-digit mobile number</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Placeholder: Enter your 10-digit mobile number without spaces or dashes</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Make the catch visible</div>
+          <p class="rule-rationale">Exclusions, waiting periods, deductibles, and co-pays must be stated clearly — not buried in small text at the bottom. If a user needs to know it before they decide, put it where they'll see it.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">This plan has a 30-day waiting period for pre-existing conditions.</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">You'll pay ₹2,000 as deductible. ACKO covers the rest.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">*Applicable terms and conditions apply</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Subject to policy wording (with no explanation)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Always explain why</div>
+          <p class="rule-rationale">When asking for sensitive information — PAN, Aadhaar, health details, permissions — explain why before the user questions it. A one-line reason reduces drop-off.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">We need your PAN to process the claim payout to your account.</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Location access helps us find nearby network hospitals.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">PAN card number with no explanation</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Allow location access with no reason given</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STYLES AND STANDARDS ──────────────── -->
+    <section class="content-section" id="section-styles">
+      <div class="card">
+        <p class="breadcrumb">Standards <span class="sep">›</span> Styles and standards</p>
+        <h1 class="page-title">Styles and standards <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">Rules that keep ACKO's writing simple, consistent, and human — across every format.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Casing</div>
+          <p class="rule-rationale">Use sentence case everywhere. Capitalise only the first letter of the sentence. Use title case for proper nouns — product names, plans, places, ACKO.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your claim is under review</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Get the ACKO Platinum Health Plan</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Your Claim Is Under Review</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Numbers</div>
+          <p class="rule-rationale">Always use numerals. Never spell out numbers in product copy.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">3 documents needed</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Submit within 7 days</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Three documents needed</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Submit within seven days</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Currency</div>
+          <p class="rule-rationale">Use ₹. No space between ₹ and the number. Use Indian amount formats for large amounts: lakh, crore — not million or billion.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">₹2,000 &nbsp;·&nbsp; ₹5 lakh &nbsp;·&nbsp; ₹1 crore</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Rs. 2,000 &nbsp;·&nbsp; INR 2,000 &nbsp;·&nbsp; ₹ 2,000 &nbsp;·&nbsp; ₹5 million</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Percentages</div>
+          <p class="rule-rationale">Always use the % symbol. Never write it out as a word.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">20% co-pay</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Twenty percent co-pay</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Dates</div>
+          <p class="rule-rationale">Format: <strong>24 Jun, 2026</strong>. Include the day of the week when it adds useful context. Don't use ordinal suffixes (1st, 2nd, 24th).</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your policy expires on Friday, 24 Jun</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Renew by 24 Jun, 2026</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Your policy expires on 24th June 2026</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Renew by June 24</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Time</div>
+          <p class="rule-rationale">Format: <strong>9:00 AM</strong>. For ranges: <strong>9:00 AM – 7:00 PM</strong>. Always use AM/PM in caps with a space before it.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">We'll update you by 6:00 PM</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Available 9:00 AM – 7:00 PM</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">We'll update you by 6pm</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Available 9am-7pm</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Full stops</div>
+          <p class="rule-rationale">Use full stops only when there are 2 or more sentences. Don't use them in one-line headings, subheads, buttons, labels, or single-line copy.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your claim is under review. We'll update you by 6:00 PM today.</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Upload your PAN card (heading — no full stop)</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Your claim is under review. (single sentence with full stop)</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Upload your PAN card. (heading with full stop)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Exclamation marks</div>
+          <p class="rule-rationale">Use sparingly. Allowed only for positive, low-stakes moments — never in claims, health, accidents, payments, errors, or rejections.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your policy is active!</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Your claim was rejected!</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Oops! Something went wrong!</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Ellipses</div>
+          <p class="rule-rationale">Use only for loading states. Don't use them to trail off or create suspense in copy.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Verifying your details… (loading state)</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Your claim is almost there…</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Emojis</div>
+          <p class="rule-rationale">Use only in low-risk marketing channels — push notifications, WhatsApp nudges, promotional emails. Never in claims, health, accident, payment, or emergency contexts.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your car insurance expires tomorrow 🚗 (push notification)</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Your claim was rejected 😔</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Any emoji in hospital, accident, or payment error screens</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Ampersands</div>
+          <p class="rule-rationale">Avoid ampersands unless space is extremely limited or the official product/legal name uses "&amp;".</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Health and travel insurance</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Health &amp; travel insurance</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Brackets</div>
+          <p class="rule-rationale">Use brackets only to clarify abbreviations or to add essential data that doesn't fit inline.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">No Claim Bonus (NCB)</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your premium is ₹8,400 (including GST)</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Your claim is approved (great news)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Bullet points</div>
+          <p class="rule-rationale">Use bullets to make lists scannable. One idea per bullet. Start each bullet with a capital letter. No full stop if the bullet is a fragment — full stop only if it's a complete sentence.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">PAN card<br>Policy number<br>Hospital bill</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Long paragraph lists that combine multiple ideas into one bullet point without clear separation</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── GRAMMAR ───────────────────────────── -->
+    <section class="content-section" id="section-grammar">
+      <div class="card">
+        <p class="breadcrumb">Standards <span class="sep">›</span> Grammar and style</p>
+        <h1 class="page-title">Grammar and style <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">Rules that keep ACKO's writing personal, active, and direct.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Perspective — always second person</div>
+          <p class="rule-rationale">Write directly to the user. Use "you" and "your". Never use "customer", "policyholder", "insured", or "claimant" unless legally required.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Your policy starts today</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">The customer's policy starts today</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">ACKO is "we" and "our"</div>
+          <p class="rule-rationale">ACKO always refers to itself as "we" and "our" in product and customer-facing copy. Never use "ACKO" to refer to the company in the same sentence as "you" — it creates distance.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">We'll update you by tomorrow</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">ACKO will update you by tomorrow</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Contractions — use them</div>
+          <p class="rule-rationale">Contractions make writing sound human. Avoid them only in legal, regulatory, or formal disclosure copy where precision is required.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">We'll update you soon</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">You don't need to do anything</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">We will update you soon (in product copy)</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">You do not need to do anything (in product copy)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Active voice</div>
+          <p class="rule-rationale">Active voice is clearer and shorter. Passive voice hides who is doing what — which creates ambiguity and erodes trust. A quick test: insert "by zombies" after the verb. If the sentence still works, it's passive.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">We're reviewing your claim</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">ACKO will transfer ₹12,000 to your account</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Your claim is being reviewed (by zombies ✓ = passive)</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">₹12,000 will be transferred to your account</span></div>
+            </div>
+          </div>
+          <div class="callout"><strong>Exception — status and progress screens:</strong> When the user is checking the status of something they've submitted, describe the state of their item — not the action. <em>Your claim is under review</em> tells the user where things stand. <em>Your claim is being reviewed</em> is passive and hides who's responsible. State descriptions are not the same as passive voice.</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">British English spelling</div>
+          <p class="rule-rationale">Use British English spelling. Indian schools follow British conventions, and it aligns with how most users read and write.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Use (British)</th><th>Avoid (American)</th></tr></thead>
+              <tbody>
+                <tr><td>Cancelled</td><td>Canceled</td></tr>
+                <tr><td>Behaviour</td><td>Behavior</td></tr>
+                <tr><td>Authorise</td><td>Authorize</td></tr>
+                <tr><td>Organise</td><td>Organize</td></tr>
+                <tr><td>Colour</td><td>Color</td></tr>
+                <tr><td>Licence (noun)</td><td>License</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Using "please"</div>
+          <p class="rule-rationale">Use "please" purposefully — to soften a message, when asking someone to wait, or when asking for extra effort. Don't use it as a filler or to sound polite in contexts where it adds nothing.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">We couldn't process your cashless claim. Please submit a reimbursement claim instead.</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Please wait while we look for an agent.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Please check your premium details (no reason to soften this)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Using "sorry"</div>
+          <p class="rule-rationale">Apologise only when it's ACKO's fault. An apology doesn't always require the word "sorry" — acknowledge the situation and move to the solution. Never follow "sorry" with "but".</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Sorry, we had to cancel your medical tests — the doctor was unavailable.</span></div>
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">This usually doesn't take this long. (acknowledges delay without using "sorry")</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Sorry for the delay but no agents are available right now.</span></div>
+            </div>
+          </div>
+          <div class="callout"><strong>Rule:</strong> Never follow "sorry" with "but". It cancels the apology.</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Delivering bad news</div>
+          <p class="rule-rationale">Get to the point. State the fact, the cause, and the user's option. Don't build up to bad news with softening preamble — it reads as evasive and delays the information the user needs.</p>
+          <div class="examples">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">We couldn't approve your claim. Your documents were outdated.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">We have some bad news. It may be disheartening but your claim is rejected.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── STAKEHOLDER ───────────────────────── -->
+    <section class="content-section" id="section-stakeholder">
+      <div class="card">
+        <p class="breadcrumb">Process <span class="sep">›</span> Stakeholder alignment</p>
+        <h1 class="page-title">Stakeholder alignment</h1>
+        <div class="status-badge wip">Not started</div>
+        <p class="page-intro">How Content Design works with product, design, legal, and marketing to keep copy decisions consistent.</p>
+        <div class="wip-outline">
+          <div class="wip-outline-header">What's coming</div>
+          <ul>
+            <li>Review process and sign-off flows</li>
+            <li>When legal review is required</li>
+            <li>How to raise a copy dispute</li>
+            <li>Content handoff standards</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ACCESSIBILITY ─────────────────────── -->
+    <section class="content-section" id="section-accessibility">
+      <div class="card">
+        <p class="breadcrumb">Process <span class="sep">›</span> Accessibility standards</p>
+        <h1 class="page-title">Accessibility standards</h1>
+        <div class="status-badge wip">Not started</div>
+        <p class="page-intro">Plain language, alt text, link text, and inclusive writing — for ACKO's product surfaces.</p>
+        <div class="wip-outline">
+          <div class="wip-outline-header">What's coming</div>
+          <ul>
+            <li>Plain language and readability levels</li>
+            <li>Alt text and image descriptions</li>
+            <li>Link and CTA text for screen readers</li>
+            <li>Colour-independent writing</li>
+            <li>Inclusivity in examples and scenarios</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── LOCALISATION ─────────────────────────── -->
+    <section class="content-section" id="section-localisation">
+      <div class="card">
+        <p class="breadcrumb">Accessibility and inclusion <span class="sep">›</span> Localisation and translation</p>
+        <h1 class="page-title">Localisation and translation</h1>
+        <div class="status-badge wip">Not started</div>
+        <p class="page-intro">What transfers directly, what needs cultural adaptation, and how tone shifts across markets.</p>
+        <div class="wip-outline">
+          <div class="wip-outline-header">What's coming</div>
+          <ul>
+            <li>Localisation-first writing principles</li>
+            <li>Strings to avoid (culture-specific idioms)</li>
+            <li>Translation review process</li>
+            <li>Language-specific tone notes</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WHATSAPP ───────────────────────────── -->
+    <section class="content-section" id="section-whatsapp">
+      <div class="card">
+        <p class="breadcrumb">Writing for surfaces <span class="sep">›</span> WhatsApp</p>
+        <h1 class="page-title">WhatsApp <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">Conversational but never casual. Every message should give the reader something useful — not just a nudge.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">How we write for WhatsApp</div>
+          <p class="rule-rationale">WhatsApp is a personal channel. People don't expect brand language here — they expect a person. The primary voice is insightful: give the reader something they didn't know they needed. Be useful or don't send.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Channel guidelines</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Element</th><th>Rule</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Header</strong><br><span style="color:var(--color-text-secondary);font-size:12px">Under 40 chars</span></td><td>Clear, compelling, context-setting. Should make the user want to expand 'Read more'.</td></tr>
+                <tr><td><strong>Body</strong><br><span style="color:var(--color-text-secondary);font-size:12px">400–500 chars, under 100 words</span></td><td>More than 60 words requires the user to scroll on most phones.</td></tr>
+                <tr><td><strong>First line</strong></td><td>Don't waste it on 'Hey'. You have ~3 seconds to hook the user. Bold it.</td></tr>
+                <tr><td><strong>Personalisation</strong></td><td>Weave the first name in organically — never at the start. 'It doesn't get any better, Kavita!' not 'Hi Kavita,'.</td></tr>
+                <tr><td><strong>Quick replies</strong></td><td>Up to 3. More than 3 confuses the user.</td></tr>
+                <tr><td><strong>Sign-off</strong></td><td>None. No 'Thanks, Team ACKO'.</td></tr>
+                <tr><td><strong>Structure</strong></td><td>Line 1–2: hook → Line 3–5: context / value prop → Remaining: details, benefits, CTA.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── PUSH NOTIFICATIONS ────────────────── -->
+    <section class="content-section" id="section-push">
+      <div class="card">
+        <p class="breadcrumb">Writing for surfaces <span class="sep">›</span> Push notifications</p>
+        <h1 class="page-title">Push notifications <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">The most constrained surface we write for. Get to the point fast, earn the tap, never oversell.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">How we write push notifications</div>
+          <p class="rule-rationale">Functional pushes — claim approvals, payment reminders, policy expiry, document requests — call for plain, direct copy. Say exactly what happened or what's needed, and stop.</p>
+          <p class="rule-rationale" style="margin-top:10px">Promotional pushes have a bit more room to lead with hook over instruction, but the principle holds: get to the point fast, earn the tap, never oversell.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Channel guidelines</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Element</th><th>Rule</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Title / Header</strong><br><span style="color:var(--color-text-secondary);font-size:12px">Under 30 chars</span></td><td>Short, sharp, curiosity-driven. Aim for urgency or benefit-led phrasing. Avoid filler words.</td></tr>
+                <tr><td><strong>Body</strong><br><span style="color:var(--color-text-secondary);font-size:12px">100–140 chars</span></td><td>First half is most visible — place the key hook or value here. Second half: supporting info, CTA, or detail. Structure: Hook → Benefit → Nudge/CTA.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── MARKETING AND CAMPAIGNS ───────────── -->
+    <section class="content-section" id="section-marketing">
+      <div class="card">
+        <p class="breadcrumb">Writing for surfaces <span class="sep">›</span> Marketing and campaigns</p>
+        <h1 class="page-title">Marketing and campaigns</h1>
+        <div class="status-badge wip">Not started</div>
+        <p class="page-intro">Where ACKO has more room to show personality — without overpromising or saying things that can't be backed up elsewhere.</p>
+        <div class="wip-outline">
+          <div class="wip-outline-header">What's coming</div>
+          <ul>
+            <li>Campaign tone vs. product tone</li>
+            <li>Headlines and hooks</li>
+            <li>What ACKO never does in marketing copy</li>
+            <li>Landing page structure</li>
+            <li>Use / avoid examples</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── EMAILS ────────────────────────────── -->
+    <section class="content-section" id="section-emails">
+      <div class="card">
+        <p class="breadcrumb">Writing for surfaces <span class="sep">›</span> Emails</p>
+        <h1 class="page-title">Emails <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">More room than most channels — but not an invitation to fill the space. Most important thing goes in the first two lines.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">How we write email</div>
+          <p class="rule-rationale">Subject lines should say the actual thing. Email is where policy updates, renewal reminders, and claim communications live — all high-stakes moments where plain, direct writing matters most.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Channel guidelines</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Element</th><th>Rule</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Subject line</strong><br><span style="color:var(--color-text-secondary);font-size:12px">Under 8 words</span></td><td>Say the actual thing. 'Payment successful for your plan' ✅ &nbsp; 'Good news about your plan' ❌</td></tr>
+                <tr><td><strong>Emoji</strong></td><td>Max 1 in the subject line.</td></tr>
+                <tr><td><strong>CTA placement</strong></td><td>Must be in the first fold. Let the user tap and enter the journey immediately.</td></tr>
+                <tr><td><strong>Heading</strong></td><td>Start with 'we' or 'you'. 'You need to visit a lab' ✅ &nbsp; 'Lab visit required' ❌ &nbsp; No names or personalisation in the heading.</td></tr>
+                <tr><td><strong>Sign-off</strong></td><td>Don't sign off with 'Team ACKO'.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── LIFE INSURANCE ────────────────────── -->
+    <section class="content-section" id="section-life-insurance">
+      <div class="card">
+        <p class="breadcrumb">Writing for products <span class="sep">›</span> Life</p>
+        <h1 class="page-title">Life <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">Assuring, responsible, and grounded. Frame cover as a financial decision, not an emotional one — never sentimental, never sensational.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">How we approach life insurance</div>
+          <p class="rule-rationale">Life insurance is the hardest product to write. Most insurers lean on fear or mortality. We treat it as a financial decision — one that protects the people who depend on your income.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Writing cues</div>
+          <p class="rule-rationale"><strong>Talk in financial outcomes, not emotions.</strong></p>
+          <p class="rule-rationale" style="margin-top:10px">Life insurance protects against a financial shock, not an emotional one. Frame cover in numbers the customer can match against their actual life — rent, EMIs, school fees, dependents, years of income to replace. The math does the persuasion.</p>
+          <p class="rule-rationale" style="margin-top:10px">A good rule of thumb: cover should be 10–20x annual income. Write it so the customer can calculate it themselves.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="when-grid">
+          <div class="when-box more">
+            <div class="when-label">Do</div>
+            <ul>
+              <li>The difference between term plans and other life insurance products</li>
+              <li>Nominee details and payout timelines</li>
+              <li>How adequate cover is calculated (10–20x annual income)</li>
+              <li>What riders do and when they're worth adding</li>
+              <li>Grace period and lapse rules</li>
+            </ul>
+          </div>
+          <div class="when-box avoid">
+            <div class="when-label">Avoid</div>
+            <ul>
+              <li>Guilt-based parenting language ("your family's future depends on this")</li>
+              <li>Dramatising death or absence</li>
+              <li>Overpromising claim certainty</li>
+              <li>Sentimentality dressed as concern ("we know how much they mean to you")</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Key USPs</div>
+          <ul class="rule-rationale" style="margin:0;padding-left:18px;line-height:2">
+            <li>Flexible term plan / Customise your coverage</li>
+            <li>Create a will for FREE</li>
+            <li>Adjust your policy term</li>
+            <li>Modify nominee details</li>
+            <li>Choose how your nominees receive the payout</li>
+            <li>Tax savings</li>
+          </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Glossary</div>
+          <p class="rule-rationale" style="margin-bottom:16px">How to explain life insurance terms in plain language.</p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th style="width:30%">Term</th>
+                  <th>Explain as</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Life cover</td><td>Money your family receives if something happens to you while the policy is active.</td></tr>
+                <tr><td>Nominee</td><td>The person who receives the claim amount.</td></tr>
+                <tr><td>Policy term</td><td>How long your policy stays active.</td></tr>
+                <tr><td>Rider</td><td>An add-on cover you can include in your policy.</td></tr>
+                <tr><td>Critical illness rider</td><td>We'll pay if you're diagnosed with a listed serious illness.</td></tr>
+                <tr><td>Accidental death benefit</td><td>We'll pay if an accident leads to death.</td></tr>
+                <tr><td>Income replacement</td><td>A way to estimate how much cover your family may need for future expenses.</td></tr>
+                <tr><td>Grace period</td><td>Extra time to pay your renewal premium without losing your policy.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── HEALTH INSURANCE ──────────────────── -->
+    <section class="content-section" id="section-health-insurance">
+      <div class="card">
+        <p class="breadcrumb">Writing for products <span class="sep">›</span> Health</p>
+        <h1 class="page-title">Health <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">Plainspoken, steady, supportive. Readers are often stressed — make coverage understandable without oversimplifying.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">How we approach health</div>
+          <p class="rule-rationale">Insurance exists because life can go wrong. We don't pretend otherwise. But we don't amplify it either. We name what's at stake, state it plainly, and let it land.</p>
+          <div class="examples" style="margin-top:16px">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Do</span><span class="ex-text">Do you have ₹20 lakhs to pay for hospital bills?</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Don't let your family suffer.</span></div>
+            </div>
+          </div>
+          <div class="examples" style="margin-top:8px">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Do</span><span class="ex-text">Your claim can be rejected because of this missing cover.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">One missing cover could ruin everything.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Writing cues</div>
+          <p class="rule-rationale" style="margin-bottom:10px">Make complex things simple, not technical. If a term is familiar to customers, use it — but always explain it. No-claim bonus, cumulative bonus, porting — call them out, but break them down. Every line should sound the way someone would say it out loud, not the way a contract reads it.</p>
+          <p class="rule-rationale" style="margin-bottom:10px"><strong>When a number makes the point better, lead with it.</strong> Adjectives like <em>significantly</em>, <em>rapidly</em>, <em>widely</em> feel like they're adding weight. They're not. "Hospitalisation expenses have gone up" is easy to dismiss. "Hospitalisation expenses have gone up by 30%" stops the reader. The reader feels the gap not because we told them to feel it, but because they are seeing the math.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="when-grid">
+          <div class="when-box more">
+            <div class="when-label">Do</div>
+            <ul>
+              <li>Waiting periods</li>
+              <li>Pre-existing disease rules</li>
+              <li>Hospital/network implications</li>
+              <li>Encourage professional medical help when needed</li>
+            </ul>
+          </div>
+          <div class="when-box avoid">
+            <div class="when-label">Avoid</div>
+            <ul>
+              <li>Give medical advice</li>
+              <li>Fearmongering</li>
+              <li>Emotionally loaded family language</li>
+              <li>Light humour</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Key USPs</div>
+          <ul class="rule-rationale" style="margin:0;padding-left:18px;line-height:2">
+            <li>100% hospital bills paid</li>
+            <li>No room rent limits</li>
+            <li>10% bonus sum insured every year</li>
+            <li>Zero waiting period (for members under 50)</li>
+            <li>Cashless treatments at 11,300+ hospitals</li>
+            <li>File reimbursement claim in 2 minutes</li>
+            <li>Free yearly health check-ups</li>
+            <li>Free doctor teleconsultations</li>
+            <li>Tax deductions up to ₹75,000</li>
+            <li>Zero wait discharge</li>
+          </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Glossary</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Term</th><th>Explain as</th></tr></thead>
+              <tbody>
+                <tr><td>Sum insured</td><td>The maximum amount we'll pay in a year.</td></tr>
+                <tr><td>Deductible</td><td>The amount you pay first before we cover the rest.</td></tr>
+                <tr><td>Co-pay</td><td>Your share of the bill.</td></tr>
+                <tr><td>Waiting period</td><td>The time you need to wait before your plan starts covering certain types of treatments.</td></tr>
+                <tr><td>Pre-existing disease (PED)</td><td>A health condition you had before buying this policy.</td></tr>
+                <tr><td>Day-care procedure</td><td>Treatment that doesn't need an overnight hospital stay.</td></tr>
+                <tr><td>Cashless claim</td><td>We pay the hospital directly.</td></tr>
+                <tr><td>Reimbursement claim</td><td>You pay first, we pay you back.</td></tr>
+                <tr><td>Network hospital</td><td>A hospital where you can get cashless treatment.</td></tr>
+                <tr><td>Consumables</td><td>Medical supplies like gloves, syringes, and IV tubes.</td></tr>
+                <tr><td>Restoration benefit</td><td>Your sum insured gets restored if it runs out mid-year.</td></tr>
+                <tr><td>OPD (Outpatient Department)</td><td>For everyday medical needs that don't require staying in a hospital.</td></tr>
+                <tr><td>Grace period</td><td>Extra time to pay your renewal premium without losing your policy.</td></tr>
+                <tr><td>Porting</td><td>Moving your health insurance from one insurer to another.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── CAR INSURANCE ─────────────────────── -->
+    <!-- ── AUTO INSURANCE ──────────────────────── -->
+    <section class="content-section" id="section-auto-insurance">
+      <div class="card">
+        <p class="breadcrumb">Writing for products <span class="sep">›</span> Auto</p>
+        <h1 class="page-title">Auto insurance <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">Vigilant, practical, clear. Readers are often mid-incident or mid-decision — give them exactly what they need, fast.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Sound like</div>
+          <p class="rule-rationale">Assuring, fair, steady.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">What to do</div>
+          <ul class="rule-rationale" style="margin:0;padding-left:18px;line-height:2">
+            <li>Mention claim stage</li>
+            <li>Mention owner of next action</li>
+            <li>Mention timeline</li>
+            <li>Mention user payment, if any</li>
+            <li>Explain deductions clearly</li>
+          </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">What to avoid</div>
+          <ul class="rule-rationale" style="margin:0;padding-left:18px;line-height:2">
+            <li>"Journey"</li>
+            <li>"Sit back and relax"</li>
+            <li>"Hassle-free" unless the process truly is</li>
+            <li>"Approved" unless fully approved</li>
+            <li>"Rejected" without a reason and next option</li>
+          </ul>
+          <div class="callout" style="margin-top:16px"><strong>Example:</strong> Your claim is under review. We're checking the garage estimate and will update you by 6 PM today.</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Car — key USPs</div>
+          <ul class="rule-rationale" style="margin:0;padding-left:18px;line-height:2">
+            <li>Instant policy</li>
+            <li>Zero paperwork</li>
+            <li>Zero commission</li>
+            <li>No broker hassle</li>
+            <li>Personalised pricing</li>
+            <li>Cashless claims at any garage</li>
+            <li>24x7 support and roadside assistance</li>
+            <li>No hidden terms</li>
+            <li>Manage everything on the app</li>
+            <li>Useful add-ons</li>
+            <li>Quality repairs with warranty</li>
+            <li>Free car pick-up and drop</li>
+            <li>Priority repairs at ACKO partner garages</li>
+            <li>VAS — Ambulance, Challan, FASTag, car service, car valuation, PUC expiry, RTO, buy a new car, challan alerts, visa, car servicing</li>
+          </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Bike — key USPs</div>
+          <ul class="rule-rationale" style="margin:0;padding-left:18px;line-height:2">
+            <li>Insurance starts at ₹457</li>
+            <li>Zero fees, zero commission, zero paperwork</li>
+            <li>24x7 assistance</li>
+            <li>Instant claim settlement</li>
+            <li>Buy or renew online in 2 minutes</li>
+            <li>No cashless claims</li>
+          </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="wip-outline">
+          <div class="wip-outline-header">What's coming</div>
+          <ul>
+            <li>Writing for roadside assist and garage flows</li>
+            <li>IDV, NCB, OD, TP — when and how to explain</li>
+            <li>Where bike and car writing diverges</li>
+            <li>Domain-specific jargon guide for both</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── TRAVEL INSURANCE ──────────────────── -->
+    <section class="content-section" id="section-travel-insurance">
+      <div class="card">
+        <p class="breadcrumb">Writing for products <span class="sep">›</span> Travel</p>
+        <h1 class="page-title">Travel <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">Prepared, practical, calm. Often purchased quickly before a trip — and read urgently during one.</p>
+
+        <div class="divider"></div>
+
+        <div class="when-grid">
+          <div class="when-box more">
+            <div class="when-label">Do</div>
+            <ul>
+              <li>Clarify what the airline handles vs. what insurance covers</li>
+              <li>Explain delay/cancellation eligibility</li>
+              <li>Mention required documents</li>
+              <li>Give next steps</li>
+            </ul>
+          </div>
+          <div class="when-box avoid">
+            <div class="when-label">Avoid</div>
+            <ul>
+              <li>Overpromising compensation</li>
+              <li>Making every disruption sound covered</li>
+              <li>Casual airport jokes during stressful events</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Example</div>
+          <div class="callout">Your flight delay may be covered if it crosses the minimum delay period in your policy. Keep your boarding pass and delay confirmation ready.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── READABILITY ───────────────────────── -->
+    <section class="content-section" id="section-readability">
+      <div class="card">
+        <p class="breadcrumb">Accessibility and inclusion <span class="sep">›</span> Readability</p>
+        <h1 class="page-title">Readability</h1>
+        <div class="status-badge wip">Not started</div>
+        <p class="page-intro">Plain language standards, reading level targets, and how to write for users with varying literacy levels.</p>
+        <div class="wip-outline">
+          <div class="wip-outline-header">What's coming</div>
+          <ul>
+            <li>Target reading level for ACKO content</li>
+            <li>Sentence length and structure rules</li>
+            <li>Alt text and image descriptions</li>
+            <li>Link and CTA text for screen readers</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── INCLUSIVE LANGUAGE ────────────────── -->
+    <section class="content-section" id="section-inclusive-language">
+      <div class="card">
+        <p class="breadcrumb">Accessibility and inclusion <span class="sep">›</span> Inclusive language</p>
+        <h1 class="page-title">Inclusive language</h1>
+        <div class="status-badge wip">Not started</div>
+        <p class="page-intro">Language that works for everyone — regardless of gender, age, ability, religion, or background.</p>
+        <div class="wip-outline">
+          <div class="wip-outline-header">What's coming</div>
+          <ul>
+            <li>Gender-neutral defaults</li>
+            <li>Writing about disability and health</li>
+            <li>Avoiding cultural assumptions</li>
+            <li>Terms to avoid and their replacements</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  function navigate(id) {
+    document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+
+    const section = document.getElementById('section-' + id);
+    if (section) section.classList.add('active');
+
+    const navItem = document.querySelector(`[data-section="${id}"]`);
+    if (navItem) {
+      navItem.classList.add('active');
+      // Open any parent nav containers
+      const deepNav = navItem.closest('.deep-nav');
+      if (deepNav) {
+        deepNav.classList.add('open');
+        document.getElementById('patterns-chevron')?.classList.add('open');
+        document.getElementById('patterns-toggle')?.classList.add('open');
+        document.getElementById('product-ui-subnav')?.classList.add('open');
+        document.getElementById('product-ui-chevron')?.classList.add('open');
+        document.getElementById('product-ui-toggle')?.classList.add('open');
+      }
+      const subNav = navItem.closest('.sub-nav');
+      if (subNav) {
+        subNav.classList.add('open');
+        const parentToggle = subNav.previousElementSibling;
+        if (parentToggle) parentToggle.classList.add('open');
+      }
+    }
+    window.scrollTo(0, 0);
+  }
+
+  function toggleNav(id) {
+    document.getElementById(id + '-subnav')?.classList.toggle('open');
+    document.getElementById(id + '-chevron')?.classList.toggle('open');
+    document.getElementById(id + '-toggle')?.classList.toggle('open');
+  }
+
+  document.querySelectorAll('.nav-item[data-section]').forEach(item => {
+    item.addEventListener('click', () => navigate(item.dataset.section));
+  });
+</script>
+</body>
+</html>

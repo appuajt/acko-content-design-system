@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --check /tmp/quiz_check.js)",
+      "Bash(python3)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(cp '/Users/appu.ajith/Desktop/Design system md and skill files/acko-rule.md' '/Users/appu.ajith/Desktop/Content Design System/.claude/rules/acko-setup.md')",
+      "Bash(cp '/Users/appu.ajith/Desktop/Design system md and skill files/Designskillfiles_Acko-main/'*.md '/Users/appu.ajith/Desktop/Content Design System/.claude/skills/acko-design-system/')",
+      "Bash(cp '/Users/appu.ajith/Desktop/Content Design System/quiz.html' '/Users/appu.ajith/Desktop/ACKO UX Writing Quiz/')",
+      "Bash(cp -r '/Users/appu.ajith/Desktop/Content Design System/Font' '/Users/appu.ajith/Desktop/ACKO UX Writing Quiz/')",
+      "Bash(cp '/Users/appu.ajith/Desktop/Content Design System/.claude/rules/acko-setup.md' '/Users/appu.ajith/Desktop/ACKO UX Writing Quiz/.claude/rules/')",
+      "Bash(cp '/Users/appu.ajith/Desktop/Content Design System/.claude/skills/acko-design-system/'*.md '/Users/appu.ajith/Desktop/ACKO UX Writing Quiz/.claude/skills/acko-design-system/')",
+      "mcp__Claude_in_Chrome__list_connected_browsers",
+      "Bash(xargs kill -9)"
+    ]
+  }
+}
