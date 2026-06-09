@@ -686,6 +686,7 @@
         <li><div class="nav-item" data-section="health-insurance">Health <span class="status-pip"></span></div></li>
         <li><div class="nav-item" data-section="life-insurance">Life <span class="status-pip"></span></div></li>
         <li><div class="nav-item" data-section="travel-insurance">Travel <span class="status-pip"></span></div></li>
+        <li><div class="nav-item" data-section="enterprise">Enterprise <span class="status-pip"></span></div></li>
       </ul></nav>
     </div>
 
@@ -729,9 +730,9 @@
     <div class="sidebar-group">
       <div class="sidebar-label">Accessibility and inclusion</div>
       <nav><ul>
-        <li><div class="nav-item" data-section="readability">Readability <span class="status-pip"></span></div></li>
-        <li><div class="nav-item" data-section="inclusive-language">Inclusive language <span class="status-pip"></span></div></li>
-        <li><div class="nav-item" data-section="localisation">Localisation and translation <span class="status-pip"></span></div></li>
+        <li><div class="nav-item" data-section="readability">Readability <span class="status-pip wip"></span></div></li>
+        <li><div class="nav-item" data-section="inclusive-language">Inclusive language <span class="status-pip wip"></span></div></li>
+        <li><div class="nav-item" data-section="localisation">Localisation and translation <span class="status-pip wip"></span></div></li>
       </ul></nav>
     </div>
   </aside>
@@ -2577,17 +2578,22 @@
       <div class="card">
         <p class="breadcrumb">Accessibility and inclusion <span class="sep">›</span> Localisation and translation</p>
         <h1 class="page-title">Localisation and translation</h1>
-        <div class="status-badge wip">Not started</div>
         <p class="page-intro">What transfers directly, what needs cultural adaptation, and how tone shifts across markets.</p>
-        <div class="wip-outline">
-          <div class="wip-outline-header">What's coming</div>
-          <ul>
-            <li>Localisation-first writing principles</li>
-            <li>Strings to avoid (culture-specific idioms)</li>
-            <li>Translation review process</li>
-            <li>Language-specific tone notes</li>
-          </ul>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Write for translation first</div>
+          <p class="rule-rationale">Every string you write in English should be easy to translate. That means: one idea per sentence, active voice, no idioms or metaphors that don't travel well, and no cultural references that assume a shared context. If a sentence is hard to read in English, it'll be harder to translate.</p>
         </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Design for text expansion</div>
+          <p class="rule-rationale">Translated strings are almost always longer than English. Hindi can expand by 20–30%, Kannada's script is visually denser, and European languages like German or French regularly run 30–40% longer. Never write UI copy that fills every pixel. If a label or heading looks tight in English, it'll break in translation.</p>
+        </div>
+
       </div>
     </section>
 
@@ -2934,27 +2940,28 @@
         <div class="divider"></div>
 
         <div class="rule-block">
-          <div class="rule-heading">What to do</div>
-          <ul class="rule-rationale" style="margin:0;padding-left:18px;line-height:2">
-            <li>Mention claim stage</li>
-            <li>Mention owner of next action</li>
-            <li>Mention timeline</li>
-            <li>Mention user payment, if any</li>
-            <li>Explain deductions clearly</li>
-          </ul>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="rule-block">
-          <div class="rule-heading">What to avoid</div>
-          <ul class="rule-rationale" style="margin:0;padding-left:18px;line-height:2">
-            <li>"Journey"</li>
-            <li>"Sit back and relax"</li>
-            <li>"Hassle-free" unless the process truly is</li>
-            <li>"Approved" unless fully approved</li>
-            <li>"Rejected" without a reason and next option</li>
-          </ul>
+          <div class="when-grid">
+            <div class="when-box more">
+              <div class="when-label">Do</div>
+              <ul>
+                <li>Mention claim stage</li>
+                <li>Mention owner of next action</li>
+                <li>Mention timeline</li>
+                <li>Mention user payment, if any</li>
+                <li>Explain deductions clearly</li>
+              </ul>
+            </div>
+            <div class="when-box avoid">
+              <div class="when-label">Avoid</div>
+              <ul>
+                <li>"Journey"</li>
+                <li>"Sit back and relax"</li>
+                <li>"Hassle-free" unless the process truly is</li>
+                <li>"Approved" unless fully approved</li>
+                <li>"Rejected" without a reason and next option</li>
+              </ul>
+            </div>
+          </div>
           <div class="callout" style="margin-top:16px"><strong>Example:</strong> Your claim is under review. We're checking the garage estimate and will update you by 6 PM today.</div>
         </div>
 
@@ -3047,22 +3054,225 @@
       </div>
     </section>
 
+    <!-- ── ENTERPRISE INSURANCE ─────────────── -->
+    <section class="content-section" id="section-enterprise">
+      <div class="card">
+        <p class="breadcrumb">Writing for products <span class="sep">›</span> Enterprise</p>
+        <h1 class="page-title">Enterprise <span class="title-tag wip">In progress</span></h1>
+        <p class="page-intro">ACKO for Business is the B2B arm. The writing changes for each category — by audience, relationship, and what's at stake.</p>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">What ACKO for Business covers</div>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Category</th><th>What it is</th></tr></thead>
+              <tbody>
+                <tr><td>GMC (Group Medical Cover)</td><td>The flagship product. Available as Vanilla, Modular, and Flex constructs.</td></tr>
+                <tr><td>Gig</td><td>Insurance for gig and contract workforces. Sold to platforms like Zomato and Swiggy.</td></tr>
+                <tr><td>Travel</td><td>Group travel cover sold to companies for travel platforms like MMT and RedBus.</td></tr>
+                <tr><td>Electronic device</td><td>Embedded device protection sold to platforms, large-format retail, and general trade.</td></tr>
+                <tr><td>Credit</td><td>Embedded credit life and loan-linked cover sold to lenders.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Positioning statement</div>
+          <div class="callout"><strong>"New-age insurance for the modern-day business."</strong><br><br>Use this as the umbrella for any cross-category communication — homepage, deck covers, brand campaigns. For category-specific work, the line still sits at the top; the body lands on the audience-specific framing underneath.</div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Glossary</div>
+          <p class="rule-rationale" style="margin-bottom:16px">Key terms in enterprise insurance — and how to handle them by audience.</p>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Term</th><th>What it means</th><th>In copy</th></tr></thead>
+              <tbody>
+                <tr><td>GHI (Group Health Insurance)</td><td>Health insurance bought by a company to cover its employees</td><td>Use unexplained for CFO/HR/IT. Define for employees: "the group health policy your company has set up for you"</td></tr>
+                <tr><td>Co-pay</td><td>The portion of a claim the employee pays out of pocket</td><td>Always translate inline: "what the employee pays out of pocket"</td></tr>
+                <tr><td>Sub-limit</td><td>A smaller cap inside the overall sum insured</td><td>Always translate: "a cap inside a cap — for example, maternity capped at ₹1 lakh inside the ₹5 lakh overall cover"</td></tr>
+                <tr><td>Waiting period</td><td>The time before a specific cover kicks in</td><td>Always translate for employees: "how long before this is covered"</td></tr>
+                <tr><td>Pre-existing disease (PED)</td><td>Conditions someone had before joining the policy</td><td>Use the term with HR audiences. Translate for employees: "anything you were diagnosed with before joining"</td></tr>
+                <tr><td>Network hospitals</td><td>Hospitals where the employee doesn't pay upfront — direct settlement</td><td>Translate for employees: "hospitals where you don't pay first"</td></tr>
+                <tr><td>Pre-authorisation</td><td>Hospital approval from the insurer before treatment, for cashless</td><td>Translate for employees: "hospital approval before treatment"</td></tr>
+                <tr><td>Top-up</td><td>Extra cover that activates after the base cover is used up</td><td>Translate for employees: "extra cover after the base runs out"</td></tr>
+                <tr><td>Super top-up</td><td>Like a top-up, but counted across all claims in a year</td><td>Translate for employees: "extra cover that pools across all your claims in a year"</td></tr>
+                <tr><td>OPD (Out-Patient Department)</td><td>Hospital visits that don't need admission</td><td>Use unexplained for HR. Define for employees: "doctor visits without admission"</td></tr>
+                <tr><td>TPA (Third-Party Administrator)</td><td>A middleman some insurers use to handle claims</td><td>Use unexplained for CFO/HR. Translate for employees: "the claims-handling agency"</td></tr>
+                <tr><td>Endorsement</td><td>An official mid-policy change — adding joiners, removing dependants</td><td>Use for HR/Procurement. Translate for employees: "a mid-year change to your policy"</td></tr>
+                <tr><td>TAT (Turn-Around Time)</td><td>How long an operational step takes</td><td>Use unexplained for CFO/HR/IT/Procurement</td></tr>
+                <tr><td>Family floater</td><td>One sum insured shared across the whole family</td><td>Translate for employees: "one cover amount your whole family shares"</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Group Health Insurance</div>
+          <p class="rule-rationale"><strong>Sound like:</strong> Employer-led, employee-first.</p>
+          <p class="rule-rationale" style="margin-top:8px">The reader is the employer buying for hundreds or thousands of employees, with finance, HR, and IT all in the room.</p>
+        </div>
+        <div class="when-grid">
+          <div class="when-box more">
+            <div class="when-label">Do</div>
+            <ul>
+              <li>Cater to the employer first, then the employee</li>
+              <li>Explain terms on first use: sum insured, basic plan, top-up plan, add-ons</li>
+              <li>Use "we" for ACKO actions, "your team" for the buyer's employees</li>
+              <li>Refer to the product as "Group Health Insurance"</li>
+            </ul>
+          </div>
+          <div class="when-box avoid">
+            <div class="when-label">Avoid</div>
+            <ul>
+              <li>Absolutes — "every", "always", "the only", "guaranteed"</li>
+              <li>Intensifiers — "really fast", "extremely transparent", "incredibly easy"</li>
+              <li>Stacking 3 or more adjectives in a row</li>
+              <li>Exclamation marks</li>
+              <li>These terms: "Corporate-Provided Insurance", "Employer-Provided Insurance", "Org-Provided Insurance", "Group Medical Cover"</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout" style="margin-top:16px">
+          <strong>Example of what to avoid:</strong><br>
+          H1: We've got you covered!<br>
+          Sub: {Company} has set up health insurance for you and your loved ones.
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Gig workforce insurance</div>
+          <p class="rule-rationale"><strong>Sound like:</strong> Empathetic, operational, plainspeak.</p>
+        </div>
+        <div class="when-grid">
+          <div class="when-box more">
+            <div class="when-label">Do</div>
+            <ul>
+              <li>Use the platform's word for their workforce — "fleet", "partners", "riders"</li>
+              <li>Write for the platform first, user (fleet/rider) second</li>
+              <li>For platforms (Zomato, Ola), use number-driven metrics to highlight impact</li>
+              <li>For user (rider/fleet) comms, use short sentences and simple language</li>
+              <li>Explain terms on first use: sum insured, basic plan, top-up, add-ons</li>
+            </ul>
+          </div>
+          <div class="when-box avoid">
+            <div class="when-label">Avoid</div>
+            <ul>
+              <li>Addressing gig teams as "employees" or "staff"</li>
+              <li>Using a similar style for both platform and user communications</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">Device protection</div>
+          <p class="rule-rationale"><strong>Sound like:</strong> Device-safety, quick and transparent.</p>
+        </div>
+        <div class="when-grid">
+          <div class="when-box more">
+            <div class="when-label">Do</div>
+            <ul>
+              <li>Keep customer-facing copy under 50 words total</li>
+              <li>Open with the price: "₹299 device protection"</li>
+              <li>Explain plan types: extended warranty, comprehensive warranty, screen damage</li>
+            </ul>
+          </div>
+          <div class="when-box avoid">
+            <div class="when-label">Avoid</div>
+            <ul>
+              <li>"Worry-free protection" or "peace of mind" for devices</li>
+              <li>Stacking benefit bullets longer than 3 items</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
     <!-- ── READABILITY ───────────────────────── -->
     <section class="content-section" id="section-readability">
       <div class="card">
         <p class="breadcrumb">Accessibility and inclusion <span class="sep">›</span> Readability</p>
         <h1 class="page-title">Readability</h1>
-        <div class="status-badge wip">Not started</div>
-        <p class="page-intro">Plain language standards, reading level targets, and how to write for users with varying literacy levels.</p>
-        <div class="wip-outline">
-          <div class="wip-outline-header">What's coming</div>
-          <ul>
-            <li>Target reading level for ACKO content</li>
-            <li>Sentence length and structure rules</li>
-            <li>Alt text and image descriptions</li>
-            <li>Link and CTA text for screen readers</li>
-          </ul>
+        <p class="page-intro">Plain language standards for ACKO's product surfaces. Our users range from first-time insurance buyers to repeat customers. Write so anyone can act confidently.</p>
+
+        <div class="divider"></div>
+
+        <!-- Sentence length -->
+        <div class="rule-block">
+          <div class="rule-heading">Use shorter sentences</div>
+          <p class="rule-rationale">One idea per sentence. Don't chain clauses with "and", "which", or "that". If a sentence runs past 20 words, split it. Say what matters first — don't bury the point at the end.</p>
+          <div class="examples" style="margin-top:16px">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Do</span><span class="ex-text">Your claim is under review. We'll update you by 5 PM today.</span></div>
+              <div class="example use" style="margin-top:8px"><span class="ex-label">Do</span><span class="ex-text">You're not covered for pre-existing conditions in the first 2 years.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">We wanted to let you know that your claim, which was submitted on the 4th, is currently being reviewed by our team and we will get back to you soon.</span></div>
+              <div class="example avoid" style="margin-top:8px"><span class="ex-label">Avoid</span><span class="ex-text">Please note that coverage for pre-existing conditions, as defined in the policy terms and conditions document, is subject to a waiting period of 24 months from the date of policy inception.</span></div>
+            </div>
+          </div>
         </div>
+
+        <div class="divider"></div>
+
+        <!-- Word choices -->
+        <div class="rule-block">
+          <div class="rule-heading">Choose the shorter, simpler word</div>
+          <p class="rule-rationale">If a simpler word means the same thing, use it. Avoid turning verbs into nouns ("make a decision" → "decide") and never use double negatives.</p>
+          <div class="examples" style="margin-top:12px">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Do</span><span class="ex-text">We decided to approve your claim.</span></div>
+              <div class="example use" style="margin-top:8px"><span class="ex-label">Do</span><span class="ex-text">You're eligible for this plan.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">We made a decision on the approval of your claim.</span></div>
+              <div class="example avoid" style="margin-top:8px"><span class="ex-label">Avoid</span><span class="ex-text">You are not ineligible for this plan.</span></div>
+            </div>
+          </div>
+          <p class="rule-rationale" style="margin-top:16px">Common substitutions:</p>
+          <div class="table-wrap" style="margin-top:12px">
+            <table>
+              <thead>
+                <tr><th>Avoid</th><th>Use instead</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Utilise</td><td>Use</td></tr>
+                <tr><td>Initiate</td><td>Start</td></tr>
+                <tr><td>Assist</td><td>Help</td></tr>
+                <tr><td>Provide</td><td>Give</td></tr>
+                <tr><td>Obtain</td><td>Get</td></tr>
+                <tr><td>Terminate</td><td>End</td></tr>
+                <tr><td>Subsequent to</td><td>After</td></tr>
+                <tr><td>In the event that</td><td>If</td></tr>
+                <tr><td>Prior to</td><td>Before</td></tr>
+                <tr><td>With respect to</td><td>About</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Reading level -->
+        <div class="rule-block">
+          <div class="rule-heading">Aim for a 6–7th grade reading level</div>
+          <p class="rule-rationale">Use <a href="https://hemingwayapp.com" target="_blank" style="color:var(--color-primary);text-decoration:none;font-weight:500">Hemingway App</a> to check the readability score across all product copy — app UI, notifications, emails, and landing pages. Anything above grade 10 needs a rewrite.</p>
+          <p class="rule-rationale" style="margin-top:10px">For legal disclosures, add a plain-language summary above the fine print.</p>
+        </div>
+
       </div>
     </section>
 
@@ -3071,17 +3281,64 @@
       <div class="card">
         <p class="breadcrumb">Accessibility and inclusion <span class="sep">›</span> Inclusive language</p>
         <h1 class="page-title">Inclusive language</h1>
-        <div class="status-badge wip">Not started</div>
-        <p class="page-intro">Language that works for everyone — regardless of gender, age, ability, religion, or background.</p>
-        <div class="wip-outline">
-          <div class="wip-outline-header">What's coming</div>
-          <ul>
-            <li>Gender-neutral defaults</li>
-            <li>Writing about disability and health</li>
-            <li>Avoiding cultural assumptions</li>
-            <li>Terms to avoid and their replacements</li>
-          </ul>
+        <p class="page-intro">ACKO's users span income levels, family structures, regions, and ages. These defaults keep the copy working for all of them.</p>
+
+        <div class="divider"></div>
+
+        <!-- Diversity -->
+        <div class="rule-block">
+          <div class="rule-heading">Include diversity in your content</div>
+          <p class="rule-rationale">ACKO's products are for everyone — regardless of age, gender, religion, income, occupation, health condition, or where in India they live. Our content should reflect that. When writing examples, scenarios, or UI copy, don't default to a single type of user. Write as if your reader could be anyone.</p>
+          <div class="examples" style="margin-top:16px">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Do</span><span class="ex-text">Whatever your occupation, we'll find a plan that works.</span></div>
+              <div class="example use" style="margin-top:8px"><span class="ex-label">Do</span><span class="ex-text">Have a pre-existing condition? We still have options for you.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Designed for salaried professionals.</span></div>
+              <div class="example avoid" style="margin-top:8px"><span class="ex-label">Avoid</span><span class="ex-text">Built for healthy, active people who want peace of mind.</span></div>
+            </div>
+          </div>
         </div>
+
+        <div class="divider"></div>
+
+        <!-- Gender neutral -->
+        <div class="rule-block">
+          <div class="rule-heading">Use gender neutral language</div>
+          <p class="rule-rationale">ACKO writes to users in second person: "you" and "your". When a third party comes up — a nominee, a doctor, an agent — keep it gender neutral. Don't default to "he" just because a role sounds gendered.</p>
+          <p class="rule-rationale" style="margin-top:10px">If you don't know someone's gender, restructure the sentence so a pronoun isn't needed. If that's not possible, "they", "them", and "their" work. If you're writing about a specific person, use the pronouns they go by. When in doubt, use their name.</p>
+          <div class="examples" style="margin-top:16px">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Do</span><span class="ex-text">If your doctor recommends surgery, they'll need to certify it.</span></div>
+              <div class="example use" style="margin-top:8px"><span class="ex-label">Do</span><span class="ex-text">Your nominee will receive the claim amount.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">If your doctor recommends surgery, he'll need to certify it.</span></div>
+              <div class="example avoid" style="margin-top:8px"><span class="ex-label">Avoid</span><span class="ex-text">Your wife will receive the claim amount.</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Family -->
+        <div class="rule-block">
+          <div class="rule-heading">Don't assume a family structure</div>
+          <p class="rule-rationale">Insurance copy constantly references family. Use "the people who depend on you", "your family", or "your loved ones" — not assumptions about who that is.</p>
+          <div class="examples" style="margin-top:16px">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Do</span><span class="ex-text">Cover the people who depend on you.</span></div>
+              <div class="example use" style="margin-top:8px"><span class="ex-label">Do</span><span class="ex-text">Add up to 6 family members to your health plan.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Protect your wife and kids.</span></div>
+              <div class="example avoid" style="margin-top:8px"><span class="ex-label">Avoid</span><span class="ex-text">Cover your husband, wife, and children.</span></div>
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </section>
 
