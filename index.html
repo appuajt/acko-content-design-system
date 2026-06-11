@@ -167,8 +167,8 @@
       top: var(--header-height);
       left: 0; bottom: 0;
       width: var(--sidebar-width);
-      background: var(--grey-white);
-      border-right: 1px solid var(--color-border);
+      background: linear-gradient(175deg, #ede8ff 0%, #f3efff 30%, #f8f5ff 65%, #fcfaff 100%);
+      border-right: 1px solid rgba(104, 65, 230, 0.1);
       overflow-y: auto;
       padding-bottom: 40px;
     }
@@ -292,6 +292,7 @@
       margin-left: var(--sidebar-width);
       flex: 1;
       padding: 32px 40px 80px;
+      background: linear-gradient(180deg, #faf8ff 0%, #ffffff 16%);
     }
 
     .content-section { display: none; }
@@ -299,6 +300,8 @@
 
     .card {
       max-width: var(--content-max);
+      margin-left: auto;
+      margin-right: auto;
     }
 
     /* ── PAGE TITLE ───────────────────────────── */
