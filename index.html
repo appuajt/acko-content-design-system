@@ -611,6 +611,19 @@
       background: var(--grey-white);
     }
 
+    .ov-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(104, 65, 230, 0.08);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      color: var(--color-primary);
+    }
+    .ov-icon svg { width: 20px; height: 20px; }
+
     .ov-title {
       font-size: 14px;
       font-weight: 600;
@@ -810,34 +823,34 @@
 
         <div class="overview-grid">
           <div class="overview-card" onclick="navigate('voice-tone')">
-            <div class="ov-title">Voice and tone</div>
-            <div class="ov-desc">How ACKO sounds — and why it sounds that way.</div>
-            <div class="ov-status partial">In progress</div>
+            <div class="ov-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg></div>
+            <div class="ov-title">Foundations</div>
+            <div class="ov-desc">Voice, tone, universal writing rules, preferred terms, and grammar.</div>
           </div>
-          <div class="overview-card" onclick="navigate('surfaces')">
-            <div class="ov-title">Writing for surfaces</div>
-            <div class="ov-desc">App UX, WhatsApp, email, push, landing pages, and social.</div>
-            <div class="ov-status partial">In progress</div>
+          <div class="overview-card" onclick="navigate('auto-insurance')">
+            <div class="ov-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="ov-title">Writing for products</div>
+            <div class="ov-desc">Copy guidance for Auto, Health, Life, Travel, and Enterprise.</div>
           </div>
-          <div class="overview-card" onclick="navigate('lexicon')">
-            <div class="ov-title">Lexicon and terminology</div>
-            <div class="ov-desc">Preferred terms, product names, and insurance vocabulary.</div>
-            <div class="ov-status partial">In progress</div>
+          <div class="overview-card" onclick="navigate('ux-principles')">
+            <div class="ov-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
+            <div class="ov-title">Product UI</div>
+            <div class="ov-desc">UX writing principles and patterns for headers, CTAs, states, and components.</div>
           </div>
-          <div class="overview-card" onclick="navigate('ctas')">
-            <div class="ov-title">Patterns: CTAs</div>
-            <div class="ov-desc">Rules for writing calls to action — length, case, verbs, punctuation.</div>
-            <div class="ov-status complete">Complete</div>
-          </div>
-          <div class="overview-card" onclick="navigate('styles')">
-            <div class="ov-title">Styles and standards</div>
-            <div class="ov-desc">Punctuation, capitalisation, numbers, currency, and dates.</div>
-            <div class="ov-status partial">In progress</div>
+          <div class="overview-card" onclick="navigate('whatsapp')">
+            <div class="ov-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
+            <div class="ov-title">Channels</div>
+            <div class="ov-desc">WhatsApp, push notifications, email, and marketing campaign copy.</div>
           </div>
           <div class="overview-card" onclick="navigate('grammar')">
-            <div class="ov-title">Grammar and language</div>
-            <div class="ov-desc">English UK rules and Indian English conventions.</div>
-            <div class="ov-status partial">In progress</div>
+            <div class="ov-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 7 4 4 20 4 20 7"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="4" x2="12" y2="20"/></svg></div>
+            <div class="ov-title">Grammar and style</div>
+            <div class="ov-desc">Active voice, contractions, punctuation, capitalisation, and numbers.</div>
+          </div>
+          <div class="overview-card" onclick="navigate('readability')">
+            <div class="ov-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+            <div class="ov-title">Accessibility and inclusion</div>
+            <div class="ov-desc">Readability, inclusive language, and localisation.</div>
           </div>
         </div>
       </div>
