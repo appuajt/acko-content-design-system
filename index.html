@@ -649,6 +649,71 @@
       color: var(--color-text-secondary);
       margin-bottom: 12px;
     }
+
+    /* ── LIQUID GLASS OVERVIEW ───────────────────── */
+    #section-home {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .overview-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(72px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    #section-home > .card {
+      position: relative;
+      z-index: 1;
+    }
+
+    .overview-grid { perspective: 1400px; }
+
+    .overview-card {
+      background: rgba(255, 255, 255, 0.52);
+      backdrop-filter: blur(20px) saturate(160%);
+      -webkit-backdrop-filter: blur(20px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      box-shadow:
+        0 2px 20px rgba(104, 65, 230, 0.07),
+        0 1px 0 rgba(255, 255, 255, 0.85) inset,
+        0 -1px 0 rgba(104, 65, 230, 0.04) inset;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      will-change: transform;
+      position: relative;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+
+    .overview-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at var(--glare-x, 50%) var(--glare-y, 30%),
+        rgba(255, 255, 255, 0.55) 0%,
+        rgba(255, 255, 255, 0) 65%
+      );
+      opacity: 0;
+      transition: opacity 0.22s ease;
+      pointer-events: none;
+      border-radius: inherit;
+      z-index: 1;
+    }
+
+    .overview-card > * { position: relative; z-index: 2; }
+
+    .overview-card:hover {
+      background: rgba(255, 255, 255, 0.65);
+      border-color: rgba(255, 255, 255, 0.9);
+      box-shadow:
+        0 8px 40px rgba(104, 65, 230, 0.13),
+        0 1px 0 rgba(255, 255, 255, 0.95) inset;
+    }
+
+    .overview-card.glass-active::before { opacity: 1; }
   </style>
 </head>
 <body>
@@ -742,6 +807,8 @@
 
     <!-- ── OVERVIEW ──────────────────────────── -->
     <section class="content-section active" id="section-home">
+      <div class="overview-blob" style="width:440px;height:440px;background:rgba(104,65,230,0.1);top:-100px;right:-80px;"></div>
+      <div class="overview-blob" style="width:320px;height:320px;background:rgba(167,139,250,0.09);bottom:20px;left:-100px;"></div>
       <div class="card">
         <p class="breadcrumb">ACKO CDS</p>
         <h1 class="page-title">Content Design System</h1>
@@ -765,7 +832,7 @@
           <div class="overview-card" onclick="navigate('lexicon')">
             <div class="ov-title">Lexicon and terminology</div>
             <div class="ov-desc">Preferred terms, product names, and insurance vocabulary.</div>
-            <div class="ov-status wip">Not started</div>
+            <div class="ov-status partial">In progress</div>
           </div>
           <div class="overview-card" onclick="navigate('ctas')">
             <div class="ov-title">Patterns: CTAs</div>
@@ -775,12 +842,12 @@
           <div class="overview-card" onclick="navigate('styles')">
             <div class="ov-title">Styles and standards</div>
             <div class="ov-desc">Punctuation, capitalisation, numbers, currency, and dates.</div>
-            <div class="ov-status wip">Not started</div>
+            <div class="ov-status partial">In progress</div>
           </div>
           <div class="overview-card" onclick="navigate('grammar')">
             <div class="ov-title">Grammar and language</div>
             <div class="ov-desc">English UK rules and Indian English conventions.</div>
-            <div class="ov-status wip">Not started</div>
+            <div class="ov-status partial">In progress</div>
           </div>
         </div>
       </div>
@@ -3384,6 +3451,27 @@
 
   document.querySelectorAll('.nav-item[data-section]').forEach(item => {
     item.addEventListener('click', () => navigate(item.dataset.section));
+  });
+
+  // Liquid glass tilt + glare for overview cards
+  document.querySelectorAll('.overview-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const cx = rect.width / 2;
+      const cy = rect.height / 2;
+      const ry = ((x - cx) / cx) * 8;
+      const rx = ((y - cy) / cy) * -8;
+      card.style.transform = `perspective(1400px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(6px)`;
+      card.style.setProperty('--glare-x', `${(x / rect.width) * 100}%`);
+      card.style.setProperty('--glare-y', `${(y / rect.height) * 100}%`);
+      card.classList.add('glass-active');
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1400px) rotateX(0deg) rotateY(0deg) translateZ(0)';
+      card.classList.remove('glass-active');
+    });
   });
 </script>
 </body>
