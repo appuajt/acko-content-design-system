@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ACKO Content Design System</title>
+  <title>ACKO Content Style Guide</title>
   <style>
     /* ── FONT ─────────────────────────────────── */
     @font-face {
@@ -487,6 +487,37 @@
     }
     .callout strong { color: var(--color-text-primary); font-weight: 500; }
 
+    /* ── TONE CHIPS ───────────────────────────── */
+    .tone-chips {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding: 10px 14px;
+      background: rgba(104, 65, 230, 0.05);
+      border-radius: 8px;
+      border-left: 3px solid rgba(104, 65, 230, 0.2);
+    }
+    .tone-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--color-text-tertiary);
+      margin-right: 4px;
+      white-space: nowrap;
+    }
+    .tone-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 11px;
+      background: rgba(104, 65, 230, 0.1);
+      color: var(--color-primary);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
     /* ── STATUS BADGES ────────────────────────── */
     .status-badge {
       display: inline-flex;
@@ -719,13 +750,34 @@
     /* Hide status labels and sidebar pips */
     .ov-status           { display: none; }
     .nav-item .status-pip { display: none; }
+
+    /* Purple callout tooltip */
+    .tip-wrap { position: relative; display: inline; }
+    .tip-wrap .tip-text {
+      visibility: hidden; opacity: 0;
+      position: absolute; bottom: calc(100% + 10px); left: 0; transform: none;
+      background: rgba(104,65,230,0.07); color: var(--color-text-default);
+      border-left: 3px solid #6841E6;
+      font-size: 13px; font-weight: 400; line-height: 1.55;
+      padding: 10px 14px; border-radius: 4px 8px 8px 4px;
+      width: 280px;
+      pointer-events: none;
+      transition: opacity 0.15s ease;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(104,65,230,0.12);
+    }
+    .tip-wrap .tip-text::after {
+      content: ''; position: absolute; top: 100%; left: 16px;
+      border: 6px solid transparent; border-top-color: rgba(104,65,230,0.18);
+    }
+    .tip-wrap:hover .tip-text { visibility: visible; opacity: 1; }
   </style>
 </head>
 <body>
 
 <!-- HEADER -->
 <header class="site-header">
-  <div class="site-title"><span style="color:var(--color-primary);font-weight:700;letter-spacing:-0.5px">ACKO</span><span style="color:var(--color-text-secondary);font-weight:400">Content Design System</span></div>
+  <div class="site-title"><span style="color:var(--color-primary);font-weight:700;letter-spacing:-0.5px">ACKO</span><span style="color:var(--color-text-secondary);font-weight:400">Content Style Guide</span></div>
 </header>
 
 <!-- LAYOUT -->
@@ -744,8 +796,8 @@
       <nav><ul>
         <li><div class="nav-item" data-section="voice-tone">Voice and tone <span class="status-pip partial"></span></div></li>
         <li><div class="nav-item" data-section="universal-rules">Universal writing rules <span class="status-pip partial"></span></div></li>
-        <li><div class="nav-item" data-section="lexicon">Words and phrases <span class="status-pip"></span></div></li>
         <li><div class="nav-item" data-section="grammar">Grammar and style <span class="status-pip"></span></div></li>
+        <li><div class="nav-item" data-section="lexicon">Words and phrases <span class="status-pip"></span></div></li>
       </ul></nav>
     </div>
 
@@ -765,7 +817,7 @@
       <nav><ul>
         <li>
           <div class="nav-parent open" id="product-ui-toggle" onclick="toggleNav('product-ui')">
-            Product UI
+            UX writing
             <span class="chevron open" id="product-ui-chevron">›</span>
           </div>
           <ul class="sub-nav open" id="product-ui-subnav">
@@ -813,13 +865,13 @@
     <!-- ── OVERVIEW ──────────────────────────── -->
     <section class="content-section active" id="section-home">
       <div class="card">
-        <p class="breadcrumb">ACKO CDS</p>
-        <h1 class="page-title">Content Design System</h1>
+        <p class="breadcrumb">ACKO CSG</p>
+        <h1 class="page-title">Content Style Guide</h1>
         <p class="page-intro">The single source of truth for how ACKO writes — across product surfaces, channels, and teams.</p>
 
         <div class="divider"></div>
 
-        <p class="body-sm" style="color:var(--color-text-tertiary)">Choose a section to start exploring.</p>
+        <div class="rule-heading" style="margin-bottom:16px">Choose a section to start exploring</div>
 
         <div class="overview-grid">
           <div class="overview-card" onclick="navigate('voice-tone')">
@@ -839,7 +891,7 @@
           </div>
           <div class="overview-card" onclick="navigate('ux-principles')">
             <div class="ov-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg></div>
-            <div class="ov-title">Product UI</div>
+            <div class="ov-title">UX writing</div>
             <div class="ov-desc">UX writing principles and patterns for headers, CTAs, states, and components.</div>
           </div>
           <div class="overview-card" onclick="navigate('whatsapp')">
@@ -853,6 +905,29 @@
             <div class="ov-desc">Readability, inclusive language, and localisation.</div>
           </div>
         </div>
+
+        <div class="divider" style="margin-top:36px"></div>
+
+        <div class="rule-heading" style="margin-bottom:16px">Tools and resources</div>
+
+        <div class="overview-grid">
+          <div class="overview-card" style="cursor:default;opacity:0.7">
+            <div class="ov-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></div>
+            <div class="ov-title">ACKO editor plugin <span class="title-tag wip" style="font-size:10px;padding:2px 7px;vertical-align:middle">Coming soon</span></div>
+            <div class="ov-desc">Placeholder — write about what the plugin does and where it installs.</div>
+          </div>
+          <div class="overview-card" style="cursor:default;opacity:0.7">
+            <div class="ov-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="14" x2="13" y2="14"/></svg></div>
+            <div class="ov-title">ACKO comms tool <span class="title-tag wip" style="font-size:10px;padding:2px 7px;vertical-align:middle">Coming soon</span></div>
+            <div class="ov-desc">Placeholder — write about what the comms tool does and who it's for.</div>
+          </div>
+          <div class="overview-card" style="cursor:default;opacity:0.7">
+            <div class="ov-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div>
+            <div class="ov-title">Content design skill files <span class="title-tag wip" style="font-size:10px;padding:2px 7px;vertical-align:middle">Coming soon</span></div>
+            <div class="ov-desc">Placeholder — write about the skill .md files and how to use them with AI tools.</div>
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -1141,7 +1216,7 @@
         <div class="divider"></div>
 
         <div class="rule-block">
-          <div class="rule-heading">Always</div>
+          <div class="rule-heading">We <em>always</em></div>
           <div class="table-wrap">
             <table>
               <thead><tr><th style="background:var(--color-success-subtle);color:var(--color-success-text)">Rule</th><th style="background:var(--color-success-subtle);color:var(--color-success-text)">What it means in practice</th></tr></thead>
@@ -1162,7 +1237,7 @@
         <div class="divider"></div>
 
         <div class="rule-block">
-          <div class="rule-heading">Never</div>
+          <div class="rule-heading">We <em>never</em></div>
           <div class="table-wrap">
             <table>
               <thead><tr><th style="background:var(--color-error-subtle);color:var(--color-error-text)">Never do this</th><th style="background:var(--color-error-subtle);color:var(--color-error-text)">Because</th></tr></thead>
@@ -1239,21 +1314,21 @@
             <table>
               <thead><tr><th>Term</th><th>How to introduce it</th></tr></thead>
               <tbody>
-                <tr><td>Deductible</td><td>Explain as the amount the user pays before ACKO covers the rest</td></tr>
-                <tr><td>Co-pay</td><td>Explain as the percentage of the claim the user shares</td></tr>
-                <tr><td>Waiting period</td><td>Explain as the time before a condition is covered</td></tr>
-                <tr><td>Exclusion</td><td>Explain as what the policy does not cover</td></tr>
-                <tr><td>Consumables</td><td>Explain as items like gloves, syringes — often not covered</td></tr>
-                <tr><td>IDV (Insured Declared Value)</td><td>Explain as the current market value of the vehicle</td></tr>
-                <tr><td>NCB (No Claim Bonus)</td><td>Explain as a discount earned for not making claims</td></tr>
-                <tr><td>Zero depreciation</td><td>Explain as full part replacement without age-related deduction</td></tr>
-                <tr><td>Network hospital</td><td>Explain as hospitals where cashless treatment is available</td></tr>
-                <tr><td>Cashless claim</td><td>Explain as treatment without upfront payment at network hospitals</td></tr>
-                <tr><td>Reimbursement claim</td><td>Explain as paying first, then claiming back from ACKO</td></tr>
-                <tr><td>Pre-existing disease (PED)</td><td>Explain as a health condition that existed before the policy started</td></tr>
-                <tr><td>Room rent limit</td><td>Explain as the maximum daily room charge the policy covers</td></tr>
-                <tr><td>Sum insured</td><td>Explain as the maximum amount the policy will pay out</td></tr>
-                <tr><td>Super top-up</td><td>Explain as additional coverage that kicks in after the base plan is exhausted</td></tr>
+                <tr><td>Deductible</td><td>The amount the user pays before ACKO covers the rest</td></tr>
+                <tr><td>Co-pay</td><td>The percentage of the claim the user shares</td></tr>
+                <tr><td>Waiting period</td><td>The time before a condition is covered</td></tr>
+                <tr><td>Exclusion</td><td>What the policy does not cover</td></tr>
+                <tr><td>Consumables</td><td>Items like gloves, syringes — often not covered</td></tr>
+                <tr><td>IDV (Insured Declared Value)</td><td>The current market value of the vehicle</td></tr>
+                <tr><td>NCB (No Claim Bonus)</td><td>A discount earned for not making claims</td></tr>
+                <tr><td>Zero depreciation</td><td>Full part replacement without age-related deduction</td></tr>
+                <tr><td>Network hospital</td><td>Hospitals where cashless treatment is available</td></tr>
+                <tr><td>Cashless claim</td><td>Treatment without upfront payment at network hospitals</td></tr>
+                <tr><td>Reimbursement claim</td><td>Paying first, then claiming back from ACKO</td></tr>
+                <tr><td>Pre-existing disease (PED)</td><td>A health condition that existed before the policy started</td></tr>
+                <tr><td>Room rent limit</td><td>The maximum daily room charge the policy covers</td></tr>
+                <tr><td>Sum insured</td><td>The maximum amount the policy will pay out</td></tr>
+                <tr><td>Super top-up</td><td>Additional coverage that kicks in after the base plan is exhausted</td></tr>
               </tbody>
             </table>
           </div>
@@ -1281,7 +1356,7 @@
     <!-- ── UX WRITING PRINCIPLES ───────────────── -->
     <section class="content-section" id="section-ux-principles">
       <div class="card">
-        <p class="breadcrumb">Writing for surfaces › Product UI <span class="sep">›</span> UX writing principles</p>
+        <p class="breadcrumb">Writing for surfaces › UX writing <span class="sep">›</span> UX writing principles</p>
         <h1 class="page-title">UX writing principles <span class="title-tag wip">In progress</span></h1>
         <p class="page-intro">Before writing a single word, run it through these six principles — in order. They're a filter, not a checklist.</p>
 
@@ -1417,8 +1492,8 @@
               <div class="example use"><span class="ex-label">Use</span><span class="ex-text">I want an update on my claim</span></div>
             </div>
             <div class="examples-col">
-              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">View recommended plan</span></div>
-              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Check claim status</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Access your plan recommendations</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Initiate a claim update request</span></div>
             </div>
           </div>
         </div>
@@ -1568,7 +1643,7 @@
 
         <div class="rule-block">
           <div class="rule-heading">No full stop at the end</div>
-          <p class="rule-rationale">Never end a page title, heading, or subheader with a full stop. <strong>Exception:</strong> if you use any other punctuation in the heading (a comma, colon, or question mark), then end the sentence with a full stop.</p>
+          <p class="rule-rationale">Never end a page title, heading, or subheader with a full stop. <strong>Exception:</strong> if you are using two punchy short sentences for effect, use full stops.</p>
           <div class="examples">
             <div class="examples-col">
               <div class="example use"><span class="ex-label">Use</span><span class="ex-text">Upload your PAN card</span></div>
@@ -2294,12 +2369,22 @@
         <div class="rule-block">
           <div class="rule-heading">Currency</div>
           <p class="rule-rationale">Use ₹. No space between ₹ and the number. Use Indian amount formats for large amounts: lakh, crore — not million or billion.</p>
-          <div class="examples">
+          <div class="examples" style="margin-top:12px">
             <div class="examples-col">
               <div class="example use"><span class="ex-label">Use</span><span class="ex-text">₹2,000 &nbsp;·&nbsp; ₹5 lakh &nbsp;·&nbsp; ₹1 crore</span></div>
             </div>
             <div class="examples-col">
               <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Rs. 2,000 &nbsp;·&nbsp; INR 2,000 &nbsp;·&nbsp; ₹ 2,000 &nbsp;·&nbsp; ₹5 million</span></div>
+            </div>
+          </div>
+          <div class="rule-heading" style="margin-top:20px;font-size:14px">Lakh and crore</div>
+          <p class="rule-rationale" style="margin-top:6px">Always lowercase when spelled out. Never pluralise in amounts — "₹5 lakh", not "₹5 lakhs". For contractions in space-constrained UI, use <strong>L</strong> and <strong>Cr</strong> (uppercase). Avoid lowercase <code style="font-size:12px;background:var(--color-bg-subtle);padding:1px 5px;border-radius:4px">l</code> — it reads as the number 1 in most typefaces. Avoid lowercase <code style="font-size:12px;background:var(--color-bg-subtle);padding:1px 5px;border-radius:4px">cr</code> — it reads as "credit" in financial UI.</p>
+          <div class="examples" style="margin-top:12px">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Use</span><span class="ex-text">₹5 lakh &nbsp;·&nbsp; ₹1 crore &nbsp;·&nbsp; ₹5L &nbsp;·&nbsp; ₹1Cr</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">₹5 Lakh &nbsp;·&nbsp; ₹5 lakhs &nbsp;·&nbsp; ₹5l &nbsp;·&nbsp; ₹1cr</span></div>
             </div>
           </div>
         </div>
@@ -2478,7 +2563,7 @@
         <div class="divider"></div>
 
         <div class="rule-block">
-          <div class="rule-heading">Perspective — always second person</div>
+          <div class="rule-heading">Write directly to the reader</div>
           <p class="rule-rationale">Write directly to the user. Use "you" and "your". Never use "customer", "policyholder", "insured", or "claimant" unless legally required.</p>
           <div class="examples">
             <div class="examples-col">
@@ -2493,7 +2578,7 @@
         <div class="divider"></div>
 
         <div class="rule-block">
-          <div class="rule-heading">ACKO is "we" and "our"</div>
+          <div class="rule-heading">Refer to ACKO as "we"</div>
           <p class="rule-rationale">ACKO always refers to itself as "we" and "our" in product and customer-facing copy. Never use "ACKO" to refer to the company in the same sentence as "you" — it creates distance.</p>
           <div class="examples">
             <div class="examples-col">
@@ -2508,7 +2593,7 @@
         <div class="divider"></div>
 
         <div class="rule-block">
-          <div class="rule-heading">Contractions — use them</div>
+          <div class="rule-heading">Use contractions</div>
           <p class="rule-rationale">Contractions make writing sound human. Avoid them only in legal, regulatory, or formal disclosure copy where precision is required.</p>
           <div class="examples">
             <div class="examples-col">
@@ -2525,7 +2610,7 @@
         <div class="divider"></div>
 
         <div class="rule-block">
-          <div class="rule-heading">Active voice</div>
+          <div class="rule-heading">Write in active voice</div>
           <p class="rule-rationale">Active voice is clearer and shorter. Passive voice hides who is doing what — which creates ambiguity and erodes trust. A quick test: insert "by zombies" after the verb. If the sentence still works, it's passive.</p>
           <div class="examples">
             <div class="examples-col">
@@ -2543,7 +2628,7 @@
         <div class="divider"></div>
 
         <div class="rule-block">
-          <div class="rule-heading">British English spelling</div>
+          <div class="rule-heading">Use British English spelling</div>
           <p class="rule-rationale">Use British English spelling. Indian schools follow British conventions, and it aligns with how most users read and write.</p>
           <div class="table-wrap">
             <table>
@@ -2563,7 +2648,7 @@
         <div class="divider"></div>
 
         <div class="rule-block">
-          <div class="rule-heading">Using "please"</div>
+          <div class="rule-heading">Use "please" purposefully</div>
           <p class="rule-rationale">Use "please" purposefully — to soften a message, when asking someone to wait, or when asking for extra effort. Don't use it as a filler or to sound polite in contexts where it adds nothing.</p>
           <div class="examples">
             <div class="examples-col">
@@ -2580,7 +2665,7 @@
         <div class="divider"></div>
 
         <div class="rule-block">
-          <div class="rule-heading">Using "sorry"</div>
+          <div class="rule-heading">Apologise only when it's our fault</div>
           <p class="rule-rationale">Apologise only when it's ACKO's fault. An apology doesn't always require the word "sorry" — acknowledge the situation and move to the solution. Never follow "sorry" with "but".</p>
           <div class="examples">
             <div class="examples-col">
@@ -2598,7 +2683,7 @@
         <div class="divider"></div>
 
         <div class="rule-block">
-          <div class="rule-heading">Delivering bad news</div>
+          <div class="rule-heading">Lead with the bad news</div>
           <p class="rule-rationale">Get to the point. State the fact, the cause, and the user's option. Don't build up to bad news with softening preamble — it reads as evasive and delays the information the user needs.</p>
           <div class="examples">
             <div class="examples-col">
@@ -2663,6 +2748,16 @@
         <div class="rule-block">
           <div class="rule-heading">Write for translation first</div>
           <p class="rule-rationale">Every string you write in English should be easy to translate. That means: one idea per sentence, active voice, no idioms or metaphors that don't travel well, and no cultural references that assume a shared context. If a sentence is hard to read in English, it'll be harder to translate.</p>
+          <div class="examples" style="margin-top:16px">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Do</span><span class="ex-text">Your premium is due on 10 July.</span></div>
+              <div class="example use" style="margin-top:8px"><span class="ex-label">Do</span><span class="ex-text">Upload your ID to continue.</span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Your renewal is just around the corner — don't let it slip through!</span></div>
+              <div class="example avoid" style="margin-top:8px"><span class="ex-label">Avoid</span><span class="ex-text">Don't forget to get your ID in before we can move things forward.</span></div>
+            </div>
+          </div>
         </div>
 
         <div class="divider"></div>
@@ -2670,6 +2765,16 @@
         <div class="rule-block">
           <div class="rule-heading">Design for text expansion</div>
           <p class="rule-rationale">Translated strings are almost always longer than English. Hindi can expand by 20–30%, Kannada's script is visually denser, and European languages like German or French regularly run 30–40% longer. Never write UI copy that fills every pixel. If a label or heading looks tight in English, it'll break in translation.</p>
+          <div class="examples" style="margin-top:16px">
+            <div class="examples-col">
+              <div class="example use"><span class="ex-label">Do</span><span class="ex-text" style="display:flex;flex-direction:column;gap:5px"><span><span style="font-size:10px;font-weight:700;letter-spacing:0.06em;color:#7A7B7D;margin-right:7px">EN</span>Submit</span><span><span style="font-size:10px;font-weight:700;letter-spacing:0.06em;color:#7A7B7D;margin-right:7px">HI</span>सबमिट करें</span></span></div>
+              <div class="example use" style="margin-top:8px"><span class="ex-label">Do</span><span class="ex-text" style="display:flex;flex-direction:column;gap:5px"><span><span style="font-size:10px;font-weight:700;letter-spacing:0.06em;color:#7A7B7D;margin-right:7px">EN</span>View policy</span><span><span style="font-size:10px;font-weight:700;letter-spacing:0.06em;color:#7A7B7D;margin-right:7px">HI</span>पॉलिसी देखें</span></span></div>
+            </div>
+            <div class="examples-col">
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text" style="display:flex;flex-direction:column;gap:5px"><span><span style="font-size:10px;font-weight:700;letter-spacing:0.06em;color:#7A7B7D;margin-right:7px">EN</span>Confirm and submit your claim</span><span><span style="font-size:10px;font-weight:700;letter-spacing:0.06em;color:#7A7B7D;margin-right:7px">HI</span>अपना क्लेम कन्फ़र्म करें और सबमिट करें</span></span></div>
+              <div class="example avoid" style="margin-top:8px"><span class="ex-label">Avoid</span><span class="ex-text" style="display:flex;flex-direction:column;gap:5px"><span><span style="font-size:10px;font-weight:700;letter-spacing:0.06em;color:#7A7B7D;margin-right:7px">EN</span>View your active policy details</span><span><span style="font-size:10px;font-weight:700;letter-spacing:0.06em;color:#7A7B7D;margin-right:7px">HI</span>अपनी सक्रिय पॉलिसी का विवरण देखें</span></span></div>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -2805,7 +2910,13 @@
       <div class="card">
         <p class="breadcrumb">Writing for products <span class="sep">›</span> Life</p>
         <h1 class="page-title">Life <span class="title-tag wip">In progress</span></h1>
-        <p class="page-intro">Assuring, responsible, and grounded. Frame cover as a financial decision, not an emotional one — never sentimental, never sensational.</p>
+        <p class="page-intro">Frame cover as a financial decision, not an emotional one — never sentimental, never sensational.</p>
+        <div class="tone-chips" style="margin-top:16px">
+          <span class="tone-label">Tone</span>
+          <span class="tone-chip">Assuring</span>
+          <span class="tone-chip">Responsible</span>
+          <span class="tone-chip">Grounded</span>
+        </div>
 
         <div class="divider"></div>
 
@@ -2817,9 +2928,8 @@
         <div class="divider"></div>
 
         <div class="rule-block">
-          <div class="rule-heading">Writing cues</div>
-          <p class="rule-rationale"><strong>Talk in financial outcomes, not emotions.</strong></p>
-          <p class="rule-rationale" style="margin-top:10px">Life insurance protects against a financial shock, not an emotional one. Frame cover in numbers the customer can match against their actual life — rent, EMIs, school fees, dependents, years of income to replace. The math does the persuasion.</p>
+          <div class="rule-heading">Talk in financial outcomes, not emotions</div>
+          <p class="rule-rationale">Life insurance protects against a financial shock, not an emotional one. Frame cover in numbers the customer can match against their actual life — rent, EMIs, school fees, dependents, years of income to replace. The math does the persuasion.</p>
           <p class="rule-rationale" style="margin-top:10px">A good rule of thumb: cover should be 10–20x annual income. Write it so the customer can calculate it themselves.</p>
         </div>
 
@@ -2896,16 +3006,22 @@
       <div class="card">
         <p class="breadcrumb">Writing for products <span class="sep">›</span> Health</p>
         <h1 class="page-title">Health <span class="title-tag wip">In progress</span></h1>
-        <p class="page-intro">Plainspoken, steady, supportive. Readers are often stressed — make coverage understandable without oversimplifying.</p>
+        <p class="page-intro">Users are often stressed — make coverage understandable without oversimplifying.</p>
+        <div class="tone-chips" style="margin-top:16px">
+          <span class="tone-label">Tone</span>
+          <span class="tone-chip">Plainspoken</span>
+          <span class="tone-chip">Steady</span>
+          <span class="tone-chip">Supportive</span>
+        </div>
 
         <div class="divider"></div>
 
         <div class="rule-block">
-          <div class="rule-heading">How we approach health</div>
+          <div class="rule-heading">How we approach health insurance</div>
           <p class="rule-rationale">Insurance exists because life can go wrong. We don't pretend otherwise. But we don't amplify it either. We name what's at stake, state it plainly, and let it land.</p>
           <div class="examples" style="margin-top:16px">
             <div class="examples-col">
-              <div class="example use"><span class="ex-label">Do</span><span class="ex-text">Do you have ₹20 lakhs to pay for hospital bills?</span></div>
+              <div class="example use"><span class="ex-label">Do</span><span class="ex-text">Do you have ₹20 lakh to pay for hospital bills?</span></div>
             </div>
             <div class="examples-col">
               <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Don't let your family suffer.</span></div>
@@ -2924,9 +3040,15 @@
         <div class="divider"></div>
 
         <div class="rule-block">
-          <div class="rule-heading">Writing cues</div>
-          <p class="rule-rationale" style="margin-bottom:10px">Make complex things simple, not technical. If a term is familiar to customers, use it — but always explain it. No-claim bonus, cumulative bonus, porting — call them out, but break them down. Every line should sound the way someone would say it out loud, not the way a contract reads it.</p>
-          <p class="rule-rationale" style="margin-bottom:10px"><strong>When a number makes the point better, lead with it.</strong> Adjectives like <em>significantly</em>, <em>rapidly</em>, <em>widely</em> feel like they're adding weight. They're not. "Hospitalisation expenses have gone up" is easy to dismiss. "Hospitalisation expenses have gone up by 30%" stops the reader. The reader feels the gap not because we told them to feel it, but because they are seeing the math.</p>
+          <div class="rule-heading">Make complex things simple, not technical</div>
+          <p class="rule-rationale">If a term is familiar to customers, use it — but always explain it. No-claim bonus, cumulative bonus, porting — call them out, but break them down. Every line should sound the way someone would say it out loud, not the way a contract reads it.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">When a number explains better, lead with it</div>
+          <p class="rule-rationale">Adjectives like <em>significantly</em>, <em>rapidly</em>, <em>widely</em> feel like they're adding weight. They're not. "Hospitalisation expenses have gone up" is easy to dismiss. "Hospitalisation expenses have gone up by 30%" stops the reader. The reader feels the gap not because we told them to feel it, but because they are seeing the math.</p>
         </div>
 
         <div class="divider"></div>
@@ -3006,37 +3128,38 @@
       <div class="card">
         <p class="breadcrumb">Writing for products <span class="sep">›</span> Auto</p>
         <h1 class="page-title">Auto insurance <span class="title-tag wip">In progress</span></h1>
-        <p class="page-intro">Vigilant, practical, clear. Readers are often mid-incident or mid-decision — give them exactly what they need, fast.</p>
-
-        <div class="divider"></div>
-
-        <div class="rule-block">
-          <div class="rule-heading">Sound like</div>
-          <p class="rule-rationale">Assuring, fair, steady.</p>
+        <p class="page-intro">Users are often mid-incident or mid-decision — give them exactly what they need, fast.</p>
+        <div class="tone-chips" style="margin-top:16px">
+          <span class="tone-label">Tone</span>
+          <span class="tone-chip">Vigilant</span>
+          <span class="tone-chip">Practical</span>
+          <span class="tone-chip">Clear</span>
         </div>
 
         <div class="divider"></div>
 
         <div class="rule-block">
-          <div class="when-grid">
+          <div class="rule-heading">How we approach car insurance</div>
+          <p class="rule-rationale">Users are either mid-decision or mid-crisis — renewing and thinking about cost, or in the middle of something going wrong. They've likely been through the traditional insurance experience before. Write to relieve the anxiety they already carry. Specificity builds trust: state settlement times, garage counts, and pickup windows as facts they can hold us to, not as marketing bullets. Lead with the outcome — "We pick up your car within 60 minutes," not "We have a doorstep pickup service." Name who owns the action.</p>
+          <div class="when-grid" style="margin-top:20px">
             <div class="when-box more">
               <div class="when-label">Do</div>
               <ul>
-                <li>Mention claim stage</li>
-                <li>Mention owner of next action</li>
-                <li>Mention timeline</li>
-                <li>Mention user payment, if any</li>
-                <li>Explain deductions clearly</li>
+                <li>Name the claim stage — filed, under review, approved, transferred</li>
+                <li>Say who owns the next step — ACKO, the garage, or the user</li>
+                <li>Give a specific deadline — "by 6 PM today," not "soon"</li>
+                <li>State any amount the user owes before it surprises them</li>
+                <li>Break down deductions — what was excluded and why</li>
               </ul>
             </div>
             <div class="when-box avoid">
               <div class="when-label">Avoid</div>
               <ul>
-                <li>"Journey"</li>
-                <li>"Sit back and relax"</li>
-                <li>"Hassle-free" unless the process truly is</li>
-                <li>"Approved" unless fully approved</li>
-                <li>"Rejected" without a reason and next option</li>
+                <li>Writing "claim journey" because claims are problems to solve, not experiences to savour</li>
+                <li>Writing "sit back and relax" because it dismisses stress the user is genuinely feeling</li>
+                <li>Writing "hassle-free" because it only rings true if the process genuinely is — otherwise it backfires</li>
+                <li>Writing "approved" before the claim is fully confirmed</li>
+                <li>Writing "rejected" without stating the reason and the user's next option</li>
               </ul>
             </div>
           </div>
@@ -3063,6 +3186,13 @@
             <li>Priority repairs at ACKO partner garages</li>
             <li>VAS — Ambulance, Challan, FASTag, car service, car valuation, PUC expiry, RTO, buy a new car, challan alerts, visa, car servicing</li>
           </ul>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="rule-block">
+          <div class="rule-heading">How we approach bike insurance</div>
+          <p class="rule-rationale">Users are often younger, price-sensitive, and skeptical that insurance can be simple. Lead with price — ₹457 does more persuasion than a paragraph about coverage. The register is faster and lighter than car: shorter sentences, more action. The claims experience is the product's best story — photo upload, money in the account within hours. Frame NCB as a reward ("you've earned this discount for riding safely"), not just a calculation.</p>
         </div>
 
         <div class="divider"></div>
@@ -3099,27 +3229,37 @@
       <div class="card">
         <p class="breadcrumb">Writing for products <span class="sep">›</span> Travel</p>
         <h1 class="page-title">Travel <span class="title-tag wip">In progress</span></h1>
-        <p class="page-intro">Prepared, practical, calm. Often purchased quickly before a trip — and read urgently during one.</p>
+        <p class="page-intro">Often purchased quickly before a trip — and read urgently during one.</p>
+        <div class="tone-chips" style="margin-top:16px">
+          <span class="tone-label">Tone</span>
+          <span class="tone-chip">Prepared</span>
+          <span class="tone-chip">Practical</span>
+          <span class="tone-chip">Calm</span>
+        </div>
 
         <div class="divider"></div>
 
-        <div class="when-grid">
-          <div class="when-box more">
-            <div class="when-label">Do</div>
-            <ul>
-              <li>Clarify what the airline handles vs. what insurance covers</li>
-              <li>Explain delay/cancellation eligibility</li>
-              <li>Mention required documents</li>
-              <li>Give next steps</li>
-            </ul>
-          </div>
-          <div class="when-box avoid">
-            <div class="when-label">Avoid</div>
-            <ul>
-              <li>Overpromising compensation</li>
-              <li>Making every disruption sound covered</li>
-              <li>Casual airport jokes during stressful events</li>
-            </ul>
+        <div class="rule-block">
+          <div class="rule-heading">How we approach travel insurance</div>
+          <p class="rule-rationale">Users come to travel insurance at two very different moments: quickly before a trip, and urgently during one. Pre-trip, they're scanning for reassurance that they're covered — keep it clear and scannable. Mid-trip, they're stressed and need immediate answers. Lead with what's covered, what documents they need, and what to do next.</p>
+          <div class="when-grid" style="margin-top:20px">
+            <div class="when-box more">
+              <div class="when-label">Do</div>
+              <ul>
+                <li>Clarify what the airline handles vs. what insurance covers</li>
+                <li>Explain delay/cancellation eligibility</li>
+                <li>Mention required documents</li>
+                <li>Give next steps</li>
+              </ul>
+            </div>
+            <div class="when-box avoid">
+              <div class="when-label">Avoid</div>
+              <ul>
+                <li>Overpromising compensation</li>
+                <li>Making every disruption sound covered</li>
+                <li>Casual airport jokes during stressful events</li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -3196,8 +3336,12 @@
 
         <div class="rule-block">
           <div class="rule-heading">Group Health Insurance</div>
-          <p class="rule-rationale"><strong>Sound like:</strong> Employer-led, employee-first.</p>
-          <p class="rule-rationale" style="margin-top:8px">The reader is the employer buying for hundreds or thousands of employees, with finance, HR, and IT all in the room.</p>
+          <div class="tone-chips" style="margin:10px 0 12px">
+            <span class="tone-label">Tone</span>
+            <span class="tone-chip">Employer-led</span>
+            <span class="tone-chip">Employee-first</span>
+          </div>
+          <p class="rule-rationale">The reader is the employer buying for hundreds or thousands of employees, with finance, HR, and IT all in the room.</p>
         </div>
         <div class="when-grid">
           <div class="when-box more">
@@ -3230,7 +3374,12 @@
 
         <div class="rule-block">
           <div class="rule-heading">Gig workforce insurance</div>
-          <p class="rule-rationale"><strong>Sound like:</strong> Empathetic, operational, plainspeak.</p>
+          <div class="tone-chips" style="margin:10px 0 0">
+            <span class="tone-label">Tone</span>
+            <span class="tone-chip">Empathetic</span>
+            <span class="tone-chip">Operational</span>
+            <span class="tone-chip">Plainspeak</span>
+          </div>
         </div>
         <div class="when-grid">
           <div class="when-box more">
@@ -3256,7 +3405,12 @@
 
         <div class="rule-block">
           <div class="rule-heading">Device protection</div>
-          <p class="rule-rationale"><strong>Sound like:</strong> Device-safety, quick and transparent.</p>
+          <div class="tone-chips" style="margin:10px 0 0">
+            <span class="tone-label">Tone</span>
+            <span class="tone-chip">Device-safety</span>
+            <span class="tone-chip">Quick</span>
+            <span class="tone-chip">Transparent</span>
+          </div>
         </div>
         <div class="when-grid">
           <div class="when-box more">
@@ -3347,7 +3501,7 @@
         <!-- Reading level -->
         <div class="rule-block">
           <div class="rule-heading">Aim for a 6–7th grade reading level</div>
-          <p class="rule-rationale">Use <a href="https://hemingwayapp.com" target="_blank" style="color:var(--color-primary);text-decoration:none;font-weight:500">Hemingway App</a> to check the readability score across all product copy — app UI, notifications, emails, and landing pages. Anything above grade 10 needs a rewrite.</p>
+          <p class="rule-rationale">Use <span class="tip-wrap"><a href="https://hemingwayapp.com" target="_blank" style="color:var(--color-primary);text-decoration:none;font-weight:500;border-bottom:1px dashed rgba(104,65,230,0.4)">Hemingway App</a><span class="tip-text">A free readability checker that highlights complex sentences, passive voice, and hard-to-read copy. Aim for grade 6–7.</span></span> to check the readability score across all product copy — app UI, notifications, emails, and landing pages. Anything above grade 10 needs a rewrite.</p>
           <p class="rule-rationale" style="margin-top:10px">For legal disclosures, add a plain-language summary above the fine print.</p>
         </div>
 
@@ -3369,12 +3523,12 @@
           <p class="rule-rationale">ACKO's products are for everyone — regardless of age, gender, religion, income, occupation, health condition, or where in India they live. Our content should reflect that. When writing examples, scenarios, or UI copy, don't default to a single type of user. Write as if your reader could be anyone.</p>
           <div class="examples" style="margin-top:16px">
             <div class="examples-col">
-              <div class="example use"><span class="ex-label">Do</span><span class="ex-text">Whatever your occupation, we'll find a plan that works.</span></div>
-              <div class="example use" style="margin-top:8px"><span class="ex-label">Do</span><span class="ex-text">Have a pre-existing condition? We still have options for you.</span></div>
+              <div class="example use"><span class="ex-label">Do</span><span class="ex-text">Plans for every Indian family.</span></div>
+              <div class="example use" style="margin-top:8px"><span class="ex-label">Do</span><span class="ex-text">Whatever your health history, we have options for you.</span></div>
             </div>
             <div class="examples-col">
-              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Designed for salaried professionals.</span></div>
-              <div class="example avoid" style="margin-top:8px"><span class="ex-label">Avoid</span><span class="ex-text">Built for healthy, active people who want peace of mind.</span></div>
+              <div class="example avoid"><span class="ex-label">Avoid</span><span class="ex-text">Made for young professionals.</span></div>
+              <div class="example avoid" style="margin-top:8px"><span class="ex-label">Avoid</span><span class="ex-text">Ideal for people with no pre-existing conditions.</span></div>
             </div>
           </div>
         </div>
