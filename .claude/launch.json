@@ -4,7 +4,7 @@
     {
       "name": "cds",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "-p", "4321", "."],
+      "runtimeArgs": ["serve", "-p", "4321", "--no-port-switching", "."],
       "port": 4321
     },
     {
