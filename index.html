@@ -771,6 +771,113 @@
       border: 6px solid transparent; border-top-color: rgba(104,65,230,0.18);
     }
     .tip-wrap:hover .tip-text { visibility: visible; opacity: 1; }
+
+    /* ── SEARCH ───────────────────────────────── */
+    .sidebar-search {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      padding: 14px 16px 12px;
+      background: linear-gradient(175deg, #ede8ff 0%, #f3efff 60%, #f3efff 100%);
+      border-bottom: 1px solid rgba(104, 65, 230, 0.1);
+    }
+    .search-field { position: relative; }
+    .search-field svg {
+      position: absolute;
+      left: 10px; top: 50%;
+      transform: translateY(-50%);
+      width: 14px; height: 14px;
+      color: var(--color-text-tertiary);
+      pointer-events: none;
+    }
+    .sidebar-search input {
+      width: 100%;
+      height: 34px;
+      font-family: inherit;
+      font-size: 13px;
+      color: var(--color-text-default);
+      background: var(--grey-white);
+      border: 1px solid rgba(104, 65, 230, 0.18);
+      border-radius: var(--radius-md);
+      padding: 0 10px 0 30px;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .sidebar-search input::placeholder { color: var(--color-text-tertiary); }
+    .sidebar-search input:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(104, 65, 230, 0.12);
+    }
+
+    .hero-search { margin: 24px 0 4px; max-width: 480px; }
+    .hero-search .search-field svg { left: 14px; width: 17px; height: 17px; }
+    .hero-search input {
+      width: 100%;
+      height: 48px;
+      font-family: inherit;
+      font-size: 15px;
+      color: var(--color-text-default);
+      background: var(--grey-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: 0 14px 0 42px;
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+    .hero-search input::placeholder { color: var(--color-text-tertiary); }
+    .hero-search input:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 4px rgba(104, 65, 230, 0.12);
+    }
+
+    .search-results {
+      display: none;
+      position: absolute;
+      left: 0; right: 0; top: calc(100% + 6px);
+      background: var(--grey-white);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      box-shadow: 0 12px 28px rgba(20, 20, 20, 0.12);
+      max-height: 360px;
+      overflow-y: auto;
+      z-index: 200;
+      padding: 6px;
+    }
+    .search-results.open { display: block; }
+
+    .search-result {
+      display: block;
+      padding: 8px 10px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+    }
+    .search-result:hover, .search-result.active {
+      background: rgba(104, 65, 230, 0.08);
+    }
+    .search-result-title {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--color-text-primary);
+      margin-bottom: 2px;
+    }
+    .search-result-path {
+      font-size: 11.5px;
+      color: var(--color-text-tertiary);
+    }
+    .search-result-empty {
+      padding: 14px 10px;
+      font-size: 13px;
+      color: var(--color-text-tertiary);
+      text-align: center;
+    }
+
+    .rule-heading, .page-title { scroll-margin-top: 80px; }
+
+    @keyframes rule-flash {
+      0%   { background: rgba(104, 65, 230, 0.14); }
+      100% { background: transparent; }
+    }
+    .rule-flash { animation: rule-flash 1.8s ease-out; border-radius: var(--radius-md); }
   </style>
 </head>
 <body>
@@ -785,6 +892,13 @@
 
   <!-- SIDEBAR -->
   <aside class="sidebar">
+    <div class="sidebar-search">
+      <div class="search-field">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="sidebar-search-input" placeholder="Search rules…" autocomplete="off" />
+        <div class="search-results" id="sidebar-search-results"></div>
+      </div>
+    </div>
     <div class="sidebar-group">
       <nav><ul>
         <li><div class="nav-item active" data-section="home">Overview</div></li>
@@ -797,6 +911,7 @@
         <li><div class="nav-item" data-section="voice-tone">Voice and tone <span class="status-pip partial"></span></div></li>
         <li><div class="nav-item" data-section="universal-rules">Universal writing rules <span class="status-pip partial"></span></div></li>
         <li><div class="nav-item" data-section="grammar">Grammar and style <span class="status-pip"></span></div></li>
+        <li><div class="nav-item" data-section="styles">Styles and standards <span class="status-pip"></span></div></li>
         <li><div class="nav-item" data-section="lexicon">Words and phrases <span class="status-pip"></span></div></li>
       </ul></nav>
     </div>
@@ -815,6 +930,7 @@
     <div class="sidebar-group">
       <div class="sidebar-label">Writing for surfaces</div>
       <nav><ul>
+        <li><div class="nav-item" data-section="surfaces">Writing for surfaces <span class="status-pip"></span></div></li>
         <li>
           <div class="nav-parent open" id="product-ui-toggle" onclick="toggleNav('product-ui')">
             UX writing
@@ -846,6 +962,7 @@
         <li><div class="nav-item" data-section="push">Push notifications <span class="status-pip"></span></div></li>
         <li><div class="nav-item" data-section="marketing">Marketing and campaigns <span class="status-pip"></span></div></li>
         <li><div class="nav-item" data-section="emails">Emails <span class="status-pip"></span></div></li>
+        <li><div class="nav-item" data-section="chatbot">Chatbot <span class="status-pip"></span></div></li>
       </ul></nav>
     </div>
 
@@ -868,6 +985,14 @@
         <p class="breadcrumb">ACKO CSG</p>
         <h1 class="page-title">Content Style Guide</h1>
         <p class="page-intro">The single source of truth for how ACKO writes across product surfaces, channels, and teams.</p>
+
+        <div class="hero-search">
+          <div class="search-field">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="text" id="hero-search-input" placeholder="Search for a rule, e.g. &quot;placeholder text&quot; or &quot;exclamation marks&quot;" autocomplete="off" />
+            <div class="search-results" id="hero-search-results"></div>
+          </div>
+        </div>
 
         <div class="divider"></div>
 
@@ -2836,6 +2961,26 @@
       </div>
     </section>
 
+    <!-- ── CHATBOT ───────────────────────────── -->
+    <section class="content-section" id="section-chatbot">
+      <div class="card">
+        <p class="breadcrumb">Writing for surfaces <span class="sep">›</span> Chatbot</p>
+        <h1 class="page-title">Chatbot</h1>
+        <div class="status-badge wip">Not started</div>
+        <p class="page-intro">How ACKO writes for conversational, automated support.</p>
+        <div class="wip-outline">
+          <div class="wip-outline-header">What's coming</div>
+          <ul>
+            <li>Tone for bot vs. human handoff</li>
+            <li>Turn-by-turn message length</li>
+            <li>Quick replies and menu options</li>
+            <li>Escalation and fallback language</li>
+            <li>Use / avoid examples</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
     <!-- ── EMAILS ────────────────────────────── -->
     <section class="content-section" id="section-emails">
       <div class="card">
@@ -3199,6 +3344,7 @@
           <span class="tone-label">Tone</span>
           <span class="tone-chip">Prepared</span>
           <span class="tone-chip">Practical</span>
+          <span class="tone-chip">Playful</span>
           <span class="tone-chip">Calm</span>
         </div>
 
@@ -3206,7 +3352,7 @@
 
         <div class="rule-block">
           <div class="rule-heading">How we approach travel insurance</div>
-          <p class="rule-rationale">Users hit travel insurance at two moments: quickly before a trip, or urgently during one. Pre-trip, keep it clear and scannable; they're just confirming they're covered. Mid-trip, they're stressed, so lead with what's covered, what documents they need, and what to do next.</p>
+          <p class="rule-rationale">Users hit travel insurance at two moments: quickly before a trip, or urgently during one. Pre-trip, we can loosen up: travel is where our voice gets to be playful, moving away from typical insurance language. Mid-trip, the user is stressed, so the playfulness drops; lead with genuine empathy, what's covered, what documents they need, and what to do next.</p>
           <div class="when-grid" style="margin-top:20px">
             <div class="when-box more">
               <div class="when-label">Do</div>
@@ -3604,6 +3750,173 @@
       card.classList.remove('glass-active');
     });
   });
+
+  // ── SEARCH ───────────────────────────────────
+  (function () {
+    const entries = [];
+    let uid = 0;
+
+    function cleanText(el) {
+      if (!el) return '';
+      const clone = el.cloneNode(true);
+      clone.querySelectorAll('.title-tag, .status-badge').forEach(n => n.remove());
+      return clone.textContent.replace(/\s+/g, ' ').trim();
+    }
+
+    document.querySelectorAll('.content-section').forEach(section => {
+      const sectionId = section.id.replace(/^section-/, '');
+      const pageTitleEl = section.querySelector('.page-title');
+      const breadcrumbEl = section.querySelector('.breadcrumb');
+      const pageTitle = pageTitleEl ? cleanText(pageTitleEl) : sectionId;
+      const breadcrumb = breadcrumbEl ? cleanText(breadcrumbEl) : '';
+
+      if (pageTitleEl) {
+        if (!pageTitleEl.id) pageTitleEl.id = 'search-target-' + (uid++);
+        entries.push({
+          sectionId,
+          title: pageTitle,
+          path: breadcrumb || pageTitle,
+          targetId: pageTitleEl.id,
+          text: (pageTitle + ' ' + breadcrumb).toLowerCase(),
+          headingLower: pageTitle.toLowerCase()
+        });
+      }
+
+      section.querySelectorAll('.rule-heading').forEach(headingEl => {
+        if (!headingEl.id) headingEl.id = 'search-target-' + (uid++);
+        const headingText = headingEl.textContent.trim();
+        let rationale = '';
+        const block = headingEl.closest('.rule-block') || headingEl.parentElement;
+        const rationaleEl = block ? block.querySelector('.rule-rationale') : null;
+        if (rationaleEl) rationale = rationaleEl.textContent.replace(/\s+/g, ' ').trim();
+
+        entries.push({
+          sectionId,
+          title: headingText,
+          path: breadcrumb || pageTitle,
+          targetId: headingEl.id,
+          text: (headingText + ' ' + pageTitle + ' ' + breadcrumb + ' ' + rationale).toLowerCase(),
+          headingLower: headingText.toLowerCase()
+        });
+      });
+    });
+
+    function search(query) {
+      const q = query.trim().toLowerCase();
+      if (!q) return [];
+      const scored = [];
+      for (const e of entries) {
+        let score = 0;
+        if (e.headingLower === q) score = 100;
+        else if (e.headingLower.startsWith(q)) score = 60;
+        else if (e.headingLower.includes(q)) score = 40;
+        else if (e.text.includes(q)) score = 10;
+        if (score > 0) scored.push({ entry: e, score });
+      }
+      scored.sort((a, b) => b.score - a.score || a.entry.title.length - b.entry.title.length);
+      return scored.slice(0, 8).map(s => s.entry);
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
+    function goToEntry(entry) {
+      navigate(entry.sectionId);
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const el = document.getElementById(entry.targetId);
+          if (!el) return;
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          el.classList.remove('rule-flash');
+          void el.offsetWidth;
+          el.classList.add('rule-flash');
+          setTimeout(() => el.classList.remove('rule-flash'), 1800);
+        });
+      });
+    }
+
+    function setupSearch(inputId, resultsId) {
+      const input = document.getElementById(inputId);
+      const results = document.getElementById(resultsId);
+      if (!input || !results) return;
+      let activeIndex = -1;
+      let currentMatches = [];
+
+      function render(matches) {
+        currentMatches = matches;
+        activeIndex = matches.length ? 0 : -1;
+        if (!matches.length) {
+          results.innerHTML = '<div class="search-result-empty">No matching rules</div>';
+          results.classList.add('open');
+          return;
+        }
+        results.innerHTML = matches.map((m, i) => `
+          <div class="search-result${i === 0 ? ' active' : ''}" data-index="${i}">
+            <div class="search-result-title">${escapeHtml(m.title)}</div>
+            <div class="search-result-path">${escapeHtml(m.path)}</div>
+          </div>
+        `).join('');
+        results.classList.add('open');
+      }
+
+      function close() {
+        results.classList.remove('open');
+        activeIndex = -1;
+      }
+
+      function highlight() {
+        results.querySelectorAll('.search-result').forEach((el, i) => {
+          el.classList.toggle('active', i === activeIndex);
+        });
+      }
+
+      input.addEventListener('input', () => {
+        if (!input.value.trim()) { close(); return; }
+        render(search(input.value));
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (!results.classList.contains('open')) return;
+        if (e.key === 'ArrowDown') {
+          e.preventDefault();
+          if (currentMatches.length) { activeIndex = (activeIndex + 1) % currentMatches.length; highlight(); }
+        } else if (e.key === 'ArrowUp') {
+          e.preventDefault();
+          if (currentMatches.length) { activeIndex = (activeIndex - 1 + currentMatches.length) % currentMatches.length; highlight(); }
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          if (currentMatches[activeIndex]) {
+            goToEntry(currentMatches[activeIndex]);
+            input.value = '';
+            input.blur();
+            close();
+          }
+        } else if (e.key === 'Escape') {
+          close();
+          input.blur();
+        }
+      });
+
+      results.addEventListener('mousedown', (e) => {
+        const row = e.target.closest('.search-result');
+        if (!row) return;
+        const idx = parseInt(row.dataset.index, 10);
+        if (currentMatches[idx]) {
+          goToEntry(currentMatches[idx]);
+          input.value = '';
+          close();
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!input.contains(e.target) && !results.contains(e.target)) close();
+      });
+    }
+
+    setupSearch('sidebar-search-input', 'sidebar-search-results');
+    setupSearch('hero-search-input', 'hero-search-results');
+  })();
 </script>
 </body>
 </html>
